@@ -1,4 +1,4 @@
-package com.seeyon.orgcenter;
+package com.seeyon.orgcenter.config;
 
 /**
  * @Author Huangry
