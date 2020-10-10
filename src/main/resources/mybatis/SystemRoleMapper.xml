@@ -3,41 +3,33 @@
 <mapper namespace="systemRoleMapper">
 	<!--表名 -->
 	<sql id="tableName">
-		"TBRD_YH_CURING_DATA"
+		"org_app_account_role_relation"
 	</sql>
 
 	<!-- 字段 -->
 	<sql id="Field">
-		"FILE_NAME",
-		"CURING_DATA_TYPE",
-		"UPLOAD_DATE",
-		"UPLOAD_PERSON",
-		"EFFECTIVE",
-		"PICTURE",
-		"REMARK",
-		"CREATE_USER",
-		"CREATE_DATE",
-		"UPDATE_USER",
-		"UPDATE_DATE",
-		"IS_DEL",
-		"ID"
+		"ID",
+		"NAME",
+		"CODE",
+		"APP_ID",
+		"IS_DELETED",
+		"IS_ENABLE",
+		"CREATE_TIME",
+		"UPDATE_TIME",
+		"IS_GLOBAL"
 	</sql>
 
 	<!-- 字段值 -->
 	<sql id="FieldValue">
-			#{FILE_NAME},
-			#{CURING_DATA_TYPE},
-			#{UPLOAD_DATE},
-			#{UPLOAD_PERSON},
-			#{EFFECTIVE},
-			#{PICTURE},
-			#{REMARK},
-			#{CREATE_USER},
-			#{CREATE_DATE},
-			#{UPDATE_USER},
-			#{UPDATE_DATE},
-			#{IS_DEL},
-			#{ID}
+		#{ID},
+		#{NAME},
+		#{CODE},
+		#{APP_ID},
+		#{IS_DELETED},
+		#{IS_ENABLE},
+		#{CREATE_TIME},
+		#{UPDATE_TIME},
+		#{IS_GLOBAL}
 	</sql>
 
 	<!-- 新增-->
