@@ -16,6 +16,12 @@ public class PageResult<T> extends BaseDomain {
 
     private Integer code;
 
+    private String msg;
+
+    private String err_code;
+
+    private String err_msg;
+
     /**
      * 如果失败，报错信息
      */
