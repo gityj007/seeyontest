@@ -1,9 +1,9 @@
 package com.seeyon.orgcenter.config;
 
 /**
- * @Author Huangry
+ * @Author 勾渝
  * @Description: 集成swagger2
- * @Date 2019-03-18
+ * @Date 2020-10-10
  */
 
 import org.springframework.context.annotation.Bean;
