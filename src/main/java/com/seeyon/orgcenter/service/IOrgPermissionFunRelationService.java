@@ -62,4 +62,12 @@ public interface IOrgPermissionFunRelationService extends IService<OrgPermission
 	 * @return
 	 */
 	ResultBody getFunctionByRoleID(Integer AppId,Integer RoleID);
+
+	/**
+	 * 通过功能得到角色信息
+	 * @param AppId
+	 * @param FunID
+	 * @return
+	 */
+	ResultBody getRolesByFunID( Integer AppId,  Integer FunID);
 }

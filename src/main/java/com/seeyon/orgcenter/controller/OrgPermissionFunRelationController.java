@@ -93,11 +93,14 @@ public class OrgPermissionFunRelationController {
 		return resultBody;
 	}
 
-	@ApiOperation(value="查询功能权限ID", notes="查询功能权限ID", produces="application/json")
-	@ApiImplicitParam(name = "", value = "角色ID", paramType = "form", required = true, dataType = "int")
-	@RequestMapping(value = "/getOrgFunctionById",method = RequestMethod.POST)
-	public ResultBody getOrgFunctionById(@RequestParam Integer RoleId,@RequestParam Integer AppId){
-		//ResultBody resultBody=orgPermissionFunRelationService.getOrgFunctionById(RoleId,AppId);
-		return null;
+	@ApiOperation(value = "通过功能得到角色信息", notes = "通过功能得到角色信息", produces = "application/json")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "AppId", value = "应用ID", paramType = "form", required = true, dataType = "int"),
+			@ApiImplicitParam(name = "FunID", value = "功能ID", paramType = "form", required = true, dataType = "int"),
+	})
+	@RequestMapping(value = "/getRolesByFunID", method = RequestMethod.GET)
+	public ResultBody getRolesByFunID(@RequestParam Integer AppId, @RequestParam Integer FunID){
+		ResultBody resultBody = orgPermissionFunRelationService.getRolesByFunID(AppId, FunID);
+		return resultBody;
 	}
 }

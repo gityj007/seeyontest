@@ -3,10 +3,7 @@ package com.seeyon.orgcenter.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.seeyon.orgcenter.common.ResultBody;
-import com.seeyon.orgcenter.entity.OrgAccount;
-import com.seeyon.orgcenter.entity.OrgAppAccountRoleRelation;
-import com.seeyon.orgcenter.entity.OrgFunction;
-import com.seeyon.orgcenter.entity.OrgPermissionFunRelation;
+import com.seeyon.orgcenter.entity.*;
 import com.seeyon.orgcenter.mapper.OrgPermissionFunRelationMapper;
 import com.seeyon.orgcenter.service.IOrgPermissionFunRelationService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -165,10 +162,25 @@ public class OrgPermissionFunRelationServiceImpl extends ServiceImpl<OrgPermissi
 	 */
 	@Override
 	public ResultBody getFunctionByRoleID(Integer AppId,Integer RoleID){
-		//List<OrgFunction> orgFunction = getBaseMapper().getFunctionByRoleID(AppId, RoleID);
-		//ResultBody resultBody=ResultBody.success(orgFunction);
-		//.setMessage("查询成功");
-		return null;
+		List<OrgFunction> orgFunction = getBaseMapper().getFunctionByRoleID(AppId, RoleID);
+		ResultBody resultBody=ResultBody.success(orgFunction);
+		resultBody.setMessage("查询成功");
+		return resultBody;
+	}
+
+	/**
+	 * 通过功能得到角色信息
+	 *
+	 * @param AppId
+	 * @param FunID
+	 * @return
+	 */
+	@Override
+	public ResultBody getRolesByFunID(Integer AppId, Integer FunID) {
+		List<OrgFunction> orgFunction = getBaseMapper().getRolesByFunID(AppId, FunID);
+		ResultBody resultBody=ResultBody.success(orgFunction);
+		resultBody.setMessage("查询成功");
+		return resultBody;
 	}
 
 }
