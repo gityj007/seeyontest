@@ -22,5 +22,13 @@ public interface IOrgAppAccountRoleRelationService extends IService<OrgAppAccoun
      * @param RoleIDs
      * @return
      */
-    ResultBody accountBindRole(@RequestParam Integer AccountId, @RequestParam List<Integer> RoleIDs);
+    ResultBody accountBindRole(Integer AppId,Integer AccountId, List<Integer> RoleIDs);
+
+    /**
+     * 角色绑定人员
+     * @param RoleID
+     * @param AccountIds
+     * @return
+     */
+    ResultBody roleBindAccount(Integer AppId,Integer RoleID, List<Integer> AccountIds);
 }

@@ -31,8 +31,8 @@ public class OrgAppAccountRoleRelationController {
     @ApiOperation(value="账号绑定角色byID", notes="删除角色byID", produces="application/json")
     @ApiImplicitParam(name = "AccountId", value = "账号ID", paramType = "form", required = true, dataType = "long")
     @RequestMapping(value = "/accountBindRole",method = RequestMethod.POST)
-    public ResultBody accountBindRole(@RequestParam Integer AccountId, @RequestParam List<Integer> RoleIDs){
-        ResultBody resultBody=orgAppAccountRoleRelationService.accountBindRole(AccountId,RoleIDs);
+    public ResultBody accountBindRole(@RequestParam Integer AppId,@RequestParam Integer AccountId, @RequestParam List<Integer> RoleIDs){
+        ResultBody resultBody=orgAppAccountRoleRelationService.accountBindRole(AppId,AccountId,RoleIDs);
         return resultBody;
     }
 
