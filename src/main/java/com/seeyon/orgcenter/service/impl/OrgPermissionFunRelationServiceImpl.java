@@ -1,20 +1,174 @@
 package com.seeyon.orgcenter.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.seeyon.orgcenter.common.ResultBody;
+import com.seeyon.orgcenter.entity.OrgAccount;
+import com.seeyon.orgcenter.entity.OrgAppAccountRoleRelation;
+import com.seeyon.orgcenter.entity.OrgFunction;
 import com.seeyon.orgcenter.entity.OrgPermissionFunRelation;
 import com.seeyon.orgcenter.mapper.OrgPermissionFunRelationMapper;
 import com.seeyon.orgcenter.service.IOrgPermissionFunRelationService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * <p>
- *  服务实现类
+ *  角色功能权限服务实现类
  * </p>
  *
- * @author yangjian
+ * @author gouyu
  * @since 2020-10-11
  */
 @Service
 public class OrgPermissionFunRelationServiceImpl extends ServiceImpl<OrgPermissionFunRelationMapper, OrgPermissionFunRelation> implements IOrgPermissionFunRelationService {
+	/**
+	 * 角色绑定功能权限
+	 *
+	 * @param RoleId
+	 * @param funIDs
+	 * @param AppId
+	 * @param name
+	 * @return
+	 */
+	@Override
+	public ResultBody roleBindfunction(Integer RoleId,List<Integer> funIDs,Integer AppId,String name){
+		LambdaQueryWrapper<OrgPermissionFunRelation> orgPermissionFunRelationQueryWrapper=new LambdaQueryWrapper<OrgPermissionFunRelation>();
+		orgPermissionFunRelationQueryWrapper.
+				eq(OrgPermissionFunRelation::getRoleId,RoleId).
+				eq(OrgPermissionFunRelation::getAppId,AppId).
+				eq(OrgPermissionFunRelation::getName,name).
+				in(OrgPermissionFunRelation::getFunId,funIDs).
+				select(OrgPermissionFunRelation::getFunId);
+
+		List<Map<String, Object>> maps = listMaps(orgPermissionFunRelationQueryWrapper);
+		/**
+		 * 移除已存在绑定的
+		 */
+		funIDs.removeIf(FunId->{
+			for(Map<String, Object> map:maps){
+				Long buffunId= (Long) map.get("funId");
+				return funIDs.indexOf(buffunId)!=-1;
+			}
+			return false;
+		});
+		/**
+		 * 组装保存数据
+		 */
+		List<OrgPermissionFunRelation> orgPermissionFunRelations=funIDs.stream().map(funId->{
+			OrgPermissionFunRelation orgPermissionFunRelation=new OrgPermissionFunRelation();
+			orgPermissionFunRelation.setFunId(funId);
+			orgPermissionFunRelation.setRoleId(RoleId);
+			orgPermissionFunRelation.setAppId(AppId);
+			orgPermissionFunRelation.setName(name);
+			return orgPermissionFunRelation;
+		}).collect(Collectors.toList());
+		return ResultBody.success(saveBatch(orgPermissionFunRelations));
+	}
+
+	/**
+	 * 功能权限绑定角色
+	 *
+	 * @param AppId
+	 * @param funID
+	 * @param name
+	 * @param RoleIDs
+	 * @return
+	 */
+	@Override
+	public ResultBody functionBindRole(Integer AppId,Integer funID,String name,List<Integer> RoleIDs){
+		LambdaQueryWrapper<OrgPermissionFunRelation> orgPermissionFunRelationQueryWrapper=new LambdaQueryWrapper<OrgPermissionFunRelation>();
+		orgPermissionFunRelationQueryWrapper.
+				eq(OrgPermissionFunRelation::getFunId,funID).
+				eq(OrgPermissionFunRelation::getAppId,AppId).
+				eq(OrgPermissionFunRelation::getName,name).
+				in(OrgPermissionFunRelation::getRoleId,RoleIDs).
+				select(OrgPermissionFunRelation::getRoleId);
+
+		List<Map<String, Object>> maps = listMaps(orgPermissionFunRelationQueryWrapper);
+		/**
+		 * 移除已存在绑定的
+		 */
+		RoleIDs.removeIf(RoleID->{
+			for(Map<String, Object> map:maps){
+				Long bufroleId= (Long) map.get("roleID");
+				return RoleIDs.indexOf(bufroleId)!=-1;
+			}
+			return false;
+		});
+		/**
+		 * 组装保存数据
+		 */
+		List<OrgPermissionFunRelation> orgPermissionFunRelations=RoleIDs.stream().map(roleID->{
+			OrgPermissionFunRelation orgPermissionFunRelation=new OrgPermissionFunRelation();
+			orgPermissionFunRelation.setFunId(funID);
+			orgPermissionFunRelation.setRoleId(roleID);
+			orgPermissionFunRelation.setAppId(AppId);
+			orgPermissionFunRelation.setName(name);
+			return orgPermissionFunRelation;
+		}).collect(Collectors.toList());
+		return ResultBody.success(saveBatch(orgPermissionFunRelations));
+	}
+
+	/**
+	 * 通过账号解除绑定角色
+	 *
+	 * @param AppId
+	 * @param RoleID
+	 * @param FunIDs
+	 * @return
+	 */
+	@Override
+	public ResultBody cancelRoleBindfunction(Integer AppId,Integer RoleID,List<Integer> FunIDs){
+		QueryWrapper<OrgPermissionFunRelation> orgPermissionFunRelationQueryWrapper=new QueryWrapper<OrgPermissionFunRelation>();
+		orgPermissionFunRelationQueryWrapper.
+				eq("appId",AppId).
+				eq("roleId",RoleID)
+				.in("funId",FunIDs);
+		ResultBody resultBody=ResultBody.success(remove(orgPermissionFunRelationQueryWrapper));
+		resultBody.setMessage("删除成功");
+		return resultBody;
+	}
+
+	/**
+	 * 通过功能解除绑定角色
+	 *
+	 * @param AppId
+	 * @param FunID
+	 * @param RoleIDs
+	 * @return
+	 */
+	@Override
+	public ResultBody cancelFunctionBindRole(Integer AppId,Integer FunID,List<Integer> RoleIDs){
+		QueryWrapper<OrgPermissionFunRelation> orgPermissionFunRelationQueryWrapper=new QueryWrapper<OrgPermissionFunRelation>();
+		orgPermissionFunRelationQueryWrapper.
+				eq("appId",AppId).
+				eq("funId",FunID)
+				.in("roleId",RoleIDs);
+		ResultBody resultBody=ResultBody.success(remove(orgPermissionFunRelationQueryWrapper));
+		resultBody.setMessage("删除成功");
+		return resultBody;
+	}
+
+	/**
+	 * 查询功能信息通过角色Id
+	 * @param AppId
+	 * @param RoleID
+	 * @return
+	 */
+	@Override
+	public ResultBody getFunctionByRoleID(Integer AppId,Integer RoleID){
+		//List<OrgFunction> orgFunction = getBaseMapper().getFunctionByRoleID(AppId, RoleID);
+		//ResultBody resultBody=ResultBody.success(orgFunction);
+		//.setMessage("查询成功");
+		return null;
+	}
 
 }
