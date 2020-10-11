@@ -47,7 +47,7 @@ public class OrgAccountServiceImpl extends ServiceImpl<OrgAccountMapper, OrgAcco
      * @return
      */
     @Override
-    public String passEncryption(String className,String Pass) {
+    public String passEncryption(String className, String Pass) {
         return SHA.getCode(Pass);
     }
 }

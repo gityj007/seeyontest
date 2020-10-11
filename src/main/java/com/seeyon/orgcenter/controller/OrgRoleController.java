@@ -2,9 +2,7 @@ package com.seeyon.orgcenter.controller;
 
 
 import com.seeyon.orgcenter.common.ResultBody;
-import com.seeyon.orgcenter.entity.OrgAccount;
 import com.seeyon.orgcenter.entity.OrgRole;
-import com.seeyon.orgcenter.service.IOrgAccountService;
 import com.seeyon.orgcenter.service.IOrgRoleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
@@ -13,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * <p>

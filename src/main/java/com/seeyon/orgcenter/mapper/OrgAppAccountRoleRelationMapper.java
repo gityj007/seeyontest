@@ -1,8 +1,13 @@
 package com.seeyon.orgcenter.mapper;
 
+import com.seeyon.orgcenter.entity.OrgAccount;
 import com.seeyon.orgcenter.entity.OrgAppAccountRoleRelation;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.seeyon.orgcenter.entity.OrgRole;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * <p>
@@ -14,5 +19,22 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface OrgAppAccountRoleRelationMapper extends BaseMapper<OrgAppAccountRoleRelation> {
+
+    /**
+     * 查询账户byroleid
+     * @param AppId
+     * @param RoleID
+     * @return
+     */
+    List<OrgAccount> getAccountsByRoleID(@Param(value = "AppId") Integer AppId, @Param(value = "RoleID") Integer RoleID);
+
+
+    /**
+     * 查询角色byaccountid
+     * @param AppId
+     * @param AccountID
+     * @return
+     */
+    List<OrgRole> getRolesByAccountID(@Param(value = "AppId") Integer AppId, @Param(value = "AccountID") Integer AccountID);
 
 }
