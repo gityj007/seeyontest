@@ -121,11 +121,11 @@ public class OrgAppAccountRoleRelationServiceImpl extends ServiceImpl<OrgAppAcco
      */
     @Override
     public ResultBody cancelAccountBindRole(Long AppId, Long AccountId, List<Long> RoleIDs) {
-        QueryWrapper<OrgAppAccountRoleRelation> orgAppAccountRoleRelationQueryWrapper=new QueryWrapper<OrgAppAccountRoleRelation>();
+        LambdaQueryWrapper<OrgAppAccountRoleRelation> orgAppAccountRoleRelationQueryWrapper=new LambdaQueryWrapper<OrgAppAccountRoleRelation>();
         orgAppAccountRoleRelationQueryWrapper.
-                eq("appId",AppId).
-                eq("accountId",AccountId)
-                .in("roleId",RoleIDs);
+                eq(OrgAppAccountRoleRelation::getAppId,AppId).
+                eq(OrgAppAccountRoleRelation::getAccountId,AccountId)
+                .in(OrgAppAccountRoleRelation::getRoleId,RoleIDs);
         ResultBody resultBody=ResultBody.success(remove(orgAppAccountRoleRelationQueryWrapper));
         resultBody.setMessage("删除成功");
         return resultBody;
@@ -141,11 +141,11 @@ public class OrgAppAccountRoleRelationServiceImpl extends ServiceImpl<OrgAppAcco
      */
     @Override
     public ResultBody cancelRoleBindAccount(Long AppId, Long RoleID, List<Long> AccountIds) {
-        QueryWrapper<OrgAppAccountRoleRelation> orgAppAccountRoleRelationQueryWrapper=new QueryWrapper<OrgAppAccountRoleRelation>();
+        LambdaQueryWrapper<OrgAppAccountRoleRelation> orgAppAccountRoleRelationQueryWrapper=new LambdaQueryWrapper<OrgAppAccountRoleRelation>();
         orgAppAccountRoleRelationQueryWrapper.
-                eq("appId",AppId).
-                eq("roleId",RoleID)
-                .in("accountId",AccountIds);
+                eq(OrgAppAccountRoleRelation::getAppId,AppId).
+                eq(OrgAppAccountRoleRelation::getRoleId,RoleID)
+                .in(OrgAppAccountRoleRelation::getAccountId,AccountIds);
         ResultBody resultBody=ResultBody.success(remove(orgAppAccountRoleRelationQueryWrapper));
         resultBody.setMessage("删除成功");
         return resultBody;
