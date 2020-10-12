@@ -2,13 +2,12 @@ package com.seeyon.orgcenter.controller;
 
 
 import com.seeyon.orgcenter.common.ResultBody;
-import com.seeyon.orgcenter.entity.OrgAccount;
-import com.seeyon.orgcenter.service.IOrgAccountService;
+import com.seeyon.orgcenter.manage.account.entity.OrgAccount;
+import com.seeyon.orgcenter.manage.account.service.IOrgAccountService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.lang.reflect.Method;
 import java.util.List;
 import java.util.stream.Collectors;
 

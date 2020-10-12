@@ -2,13 +2,11 @@ package com.seeyon.orgcenter.controller;
 
 
 import com.seeyon.orgcenter.common.ResultBody;
-import com.seeyon.orgcenter.entity.OrgAccount;
-import com.seeyon.orgcenter.service.IOrgAppAccountRoleRelationService;
+import com.seeyon.orgcenter.manage.account.service.IOrgAppAccountRoleRelationService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 

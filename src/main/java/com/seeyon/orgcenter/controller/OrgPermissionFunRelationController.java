@@ -2,8 +2,7 @@ package com.seeyon.orgcenter.controller;
 
 
 import com.seeyon.orgcenter.common.ResultBody;
-import com.seeyon.orgcenter.service.IOrgAppAccountRoleRelationService;
-import com.seeyon.orgcenter.service.IOrgPermissionFunRelationService;
+import com.seeyon.orgcenter.manage.role.service.IOrgPermissionFunRelationService;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;

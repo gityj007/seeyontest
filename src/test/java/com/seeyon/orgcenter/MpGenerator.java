@@ -64,7 +64,7 @@ public class MpGenerator {
         dsc.setUrl("jdbc:mysql:///seeyontest?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
-        dsc.setPassword("admin123456");
+        dsc.setPassword("root123456");
         mpg.setDataSource(dsc);
 
         // 包配置
@@ -137,13 +137,13 @@ public class MpGenerator {
         // 写于父类中的公共字段
 //        strategy.setSuperEntityColumns("id");
 
-        String[] tables = new String[6];
-        tables[0] = "org_account";
-        tables[1] = "org_app_account_role_relation";
-        tables[2] = "org_permission_data_relation";
-        tables[3] = "org_permission_fun_relation";
-        tables[4] = "org_role";
-        tables[5] = "org_function";
+        String[] tables = new String[1];
+//        tables[0] = "org_account";
+//        tables[1] = "org_app_account_role_relation";
+//        tables[2] = "org_permission_data_relation";
+//        tables[3] = "org_permission_fun_relation";
+//        tables[4] = "org_role";
+        tables[0] = "org_function";
 
         strategy.setInclude(tables);
         strategy.setControllerMappingHyphenStyle(true);

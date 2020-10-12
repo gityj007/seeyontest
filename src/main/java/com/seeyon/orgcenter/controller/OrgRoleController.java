@@ -2,8 +2,8 @@ package com.seeyon.orgcenter.controller;
 
 
 import com.seeyon.orgcenter.common.ResultBody;
-import com.seeyon.orgcenter.entity.OrgRole;
-import com.seeyon.orgcenter.service.IOrgRoleService;
+import com.seeyon.orgcenter.manage.role.entity.OrgRole;
+import com.seeyon.orgcenter.manage.role.service.IOrgRoleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
