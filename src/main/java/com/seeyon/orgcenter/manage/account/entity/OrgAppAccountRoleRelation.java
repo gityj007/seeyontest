@@ -25,19 +25,19 @@ public class OrgAppAccountRoleRelation implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "ID",type = IdType.AUTO)
-    private Integer id;
+    private Long id;
 
     @TableField("ACCOUNT_ID")
-    private Integer accountId;
+    private Long accountId;
 
     @TableField("ROLE_ID")
-    private Integer roleId;
+    private Long roleId;
 
     @TableField("DOMAIN")
     private String domain;
 
     @TableField("APP_ID")
-    private Integer appId;
+    private Long appId;
 
 
 }

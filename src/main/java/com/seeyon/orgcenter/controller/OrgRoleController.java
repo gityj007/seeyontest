@@ -49,7 +49,7 @@ public class OrgRoleController {
     @ApiOperation(value="删除角色byID", notes="删除角色byID", produces="application/json")
     @ApiImplicitParam(name = "id", value = "账号ID", paramType = "form", required = true, dataType = "long")
     @RequestMapping(value = "/delOrgRoleByID",method = RequestMethod.POST)
-    public ResultBody delOrgRoleByID(@RequestParam Integer id){
+    public ResultBody delOrgRoleByID(@RequestParam Long id){
         ResultBody resultBody=ResultBody.success(orgRoleService.removeById(id));
         resultBody.setMessage("删除角色成功");
         return resultBody;

@@ -19,7 +19,7 @@ public interface IOrgAccountService extends IService<OrgAccount> {
      * @param id
      * @param Pass
      */
-   void updatePass(Integer id,String Pass);
+   void updatePass(Long id,String Pass);
 
     /**
      * 密码加密

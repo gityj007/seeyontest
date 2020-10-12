@@ -26,19 +26,19 @@ public class OrgPermissionFunRelation implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "ID",type = IdType.AUTO)
-    private Integer id;
+    private Long id;
 
     @TableField("APP_ID")
-    private Integer appId;
+    private Long appId;
 
     @TableField("NAME")
     private String name;
 
     @TableField("FUN_ID")
-    private Integer funId;
+    private Long funId;
 
     @TableField("ROLE_ID")
-    private Integer roleId;
+    private Long roleId;
 
 
 }

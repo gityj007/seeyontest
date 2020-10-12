@@ -36,7 +36,7 @@ public class OrgAccountController {
     @ApiOperation(value="获取账号byID", notes="获取账号byID", produces="application/json")
     @ApiImplicitParam(name = "id", value = "账号ID", paramType = "query", required = true, dataType = "long")
     @RequestMapping(value = "/getOrgAccountByID",method = RequestMethod.GET)
-    public ResultBody getOrgAccountByID(@RequestParam Integer id){
+    public ResultBody getOrgAccountByID(@RequestParam Long id){
         ResultBody resultBody = ResultBody.success(orgAccountService.getById(id));
         resultBody.setMessage("查询成功");
         return resultBody;
@@ -75,7 +75,7 @@ public class OrgAccountController {
     @ApiOperation(value="删除账号byID", notes="删除账号byID", produces="application/json")
     @ApiImplicitParam(name = "id", value = "账号ID", paramType = "form", required = true, dataType = "long")
     @RequestMapping(value = "/delOrgAccountByID",method = RequestMethod.POST)
-    public ResultBody delOrgAccountByID(@RequestParam Integer id){
+    public ResultBody delOrgAccountByID(@RequestParam Long id){
         ResultBody resultBody=ResultBody.success(orgAccountService.removeById(id));
         resultBody.setMessage("删除成功");
         return resultBody;
@@ -87,7 +87,7 @@ public class OrgAccountController {
             @ApiImplicitParam(name = "Pass", value = "密码", paramType = "form", required = true, dataType = "String")
     })
     @RequestMapping(value = "/updatePassById",method = RequestMethod.POST)
-    public ResultBody updatePassById(@RequestParam Integer id,@RequestParam String Pass){
+    public ResultBody updatePassById(@RequestParam Long id,@RequestParam String Pass){
         orgAccountService.updatePass(id,Pass);
         ResultBody resultBody=ResultBody.success(null);
         resultBody.setMessage("密码更新成功");

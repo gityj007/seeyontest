@@ -35,7 +35,7 @@ public class OrgPermissionFunRelationServiceImpl extends ServiceImpl<OrgPermissi
 	 * @return
 	 */
 	@Override
-	public ResultBody roleBindfunction(Integer RoleId,List<Integer> funIDs,Integer AppId,String name){
+	public ResultBody roleBindfunction(Long RoleId,List<Long> funIDs,Long AppId,String name){
 		LambdaQueryWrapper<OrgPermissionFunRelation> orgPermissionFunRelationQueryWrapper=new LambdaQueryWrapper<OrgPermissionFunRelation>();
 		orgPermissionFunRelationQueryWrapper.
 				eq(OrgPermissionFunRelation::getRoleId,RoleId).
@@ -79,7 +79,7 @@ public class OrgPermissionFunRelationServiceImpl extends ServiceImpl<OrgPermissi
 	 * @return
 	 */
 	@Override
-	public ResultBody functionBindRole(Integer AppId,Integer funID,String name,List<Integer> RoleIDs){
+	public ResultBody functionBindRole(Long AppId,Long funID,String name,List<Long> RoleIDs){
 		LambdaQueryWrapper<OrgPermissionFunRelation> orgPermissionFunRelationQueryWrapper=new LambdaQueryWrapper<OrgPermissionFunRelation>();
 		orgPermissionFunRelationQueryWrapper.
 				eq(OrgPermissionFunRelation::getFunId,funID).
@@ -122,7 +122,7 @@ public class OrgPermissionFunRelationServiceImpl extends ServiceImpl<OrgPermissi
 	 * @return
 	 */
 	@Override
-	public ResultBody cancelRoleBindfunction(Integer AppId,Integer RoleID,List<Integer> FunIDs){
+	public ResultBody cancelRoleBindfunction(Long AppId,Long RoleID,List<Long> FunIDs){
 		QueryWrapper<OrgPermissionFunRelation> orgPermissionFunRelationQueryWrapper=new QueryWrapper<OrgPermissionFunRelation>();
 		orgPermissionFunRelationQueryWrapper.
 				eq("appId",AppId).
@@ -142,7 +142,7 @@ public class OrgPermissionFunRelationServiceImpl extends ServiceImpl<OrgPermissi
 	 * @return
 	 */
 	@Override
-	public ResultBody cancelFunctionBindRole(Integer AppId,Integer FunID,List<Integer> RoleIDs){
+	public ResultBody cancelFunctionBindRole(Long AppId,Long FunID,List<Long> RoleIDs){
 		QueryWrapper<OrgPermissionFunRelation> orgPermissionFunRelationQueryWrapper=new QueryWrapper<OrgPermissionFunRelation>();
 		orgPermissionFunRelationQueryWrapper.
 				eq("appId",AppId).
@@ -160,7 +160,7 @@ public class OrgPermissionFunRelationServiceImpl extends ServiceImpl<OrgPermissi
 	 * @return
 	 */
 	@Override
-	public ResultBody getFunctionByRoleID(Integer AppId,Integer RoleID){
+	public ResultBody getFunctionByRoleID(Long AppId,Long RoleID){
 		List<OrgFunction> orgFunction = getBaseMapper().getFunctionByRoleID(AppId, RoleID);
 		ResultBody resultBody=ResultBody.success(orgFunction);
 		resultBody.setMessage("查询成功");
@@ -175,7 +175,7 @@ public class OrgPermissionFunRelationServiceImpl extends ServiceImpl<OrgPermissi
 	 * @return
 	 */
 	@Override
-	public ResultBody getRolesByFunID(Integer AppId, Integer FunID) {
+	public ResultBody getRolesByFunID(Long AppId, Long FunID) {
 		List<OrgRole> orgFunction = getBaseMapper().getRolesByFunID(AppId, FunID);
 		ResultBody resultBody=ResultBody.success(orgFunction);
 		resultBody.setMessage("查询成功");

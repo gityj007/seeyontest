@@ -25,7 +25,7 @@ public class OrgRole implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "ID",type = IdType.AUTO)
-    private Integer id;
+    private Long id;
 
     @TableField("NAME")
     private String name;
@@ -34,7 +34,7 @@ public class OrgRole implements Serializable {
     private String code;
 
     @TableField("APP_ID")
-    private Integer appId;
+    private Long appId;
 
     @TableField(value = "IS_DELETED",fill = FieldFill.INSERT)
     @TableLogic

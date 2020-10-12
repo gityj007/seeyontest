@@ -37,7 +37,7 @@ public class OrgPermissionFunRelationController {
 			@ApiImplicitParam(name = "funIDs", value = "功能ID", paramType = "form", required = true, dataType = "List")
 	})
 	@RequestMapping(value = "/roleBindfunction",method = RequestMethod.POST)
-	public ResultBody roleBindfunction(@RequestParam Integer RoleId,@RequestParam Integer AppId,@RequestParam String name,@RequestParam List<Integer> funIDs){
+	public ResultBody roleBindfunction(@RequestParam Long RoleId,@RequestParam Long AppId,@RequestParam String name,@RequestParam List<Long> funIDs){
 		ResultBody resultBody=orgPermissionFunRelationService.roleBindfunction(RoleId,funIDs,AppId,name);
 		return resultBody;
 	}
@@ -50,7 +50,7 @@ public class OrgPermissionFunRelationController {
 			@ApiImplicitParam(name = "RoleIDs", value = "角色IDs", paramType = "form", required = true, dataType = "list")
 	})
 	@RequestMapping(value = "/functionBindRole", method = RequestMethod.POST)
-	public ResultBody functionBindRole(@RequestParam Integer AppId, @RequestParam Integer funID,@RequestParam String name,@RequestParam List<Integer> RoleIDs) {
+	public ResultBody functionBindRole(@RequestParam Long AppId, @RequestParam Long funID,@RequestParam String name,@RequestParam List<Long> RoleIDs) {
 		ResultBody resultBody = orgPermissionFunRelationService.functionBindRole(AppId, funID, name,RoleIDs);
 		return resultBody;
 	}
@@ -63,7 +63,7 @@ public class OrgPermissionFunRelationController {
 			@ApiImplicitParam(name = "FunIDs", value = "功能IDs", paramType = "form", required = true, dataType = "list")
 	})
 	@RequestMapping(value = "/cancelRoleBindfunction", method = RequestMethod.POST)
-	public ResultBody cancelRoleBindfunction(@RequestParam Integer AppId, @RequestParam Integer RoleID, @RequestParam List<Integer> FunIDs) {
+	public ResultBody cancelRoleBindfunction(@RequestParam Long AppId, @RequestParam Long RoleID, @RequestParam List<Long> FunIDs) {
 		ResultBody resultBody = orgPermissionFunRelationService.cancelRoleBindfunction(AppId, RoleID, FunIDs);
 		return resultBody;
 	}
@@ -76,7 +76,7 @@ public class OrgPermissionFunRelationController {
 			@ApiImplicitParam(name = "RoleIDs", value = "角色IDs", paramType = "form", required = true, dataType = "list")
 	})
 	@RequestMapping(value = "/cancelFunctionBindRole", method = RequestMethod.POST)
-	public ResultBody cancelFunctionBindRole(@RequestParam Integer AppId, @RequestParam Integer FunID, @RequestParam List<Integer> RoleIDs) {
+	public ResultBody cancelFunctionBindRole(@RequestParam Long AppId, @RequestParam Long FunID, @RequestParam List<Long> RoleIDs) {
 		ResultBody resultBody = orgPermissionFunRelationService.cancelFunctionBindRole(AppId, FunID, RoleIDs);
 		return resultBody;
 	}
@@ -87,7 +87,7 @@ public class OrgPermissionFunRelationController {
 			@ApiImplicitParam(name = "RoleID", value = "角色ID", paramType = "form", required = true, dataType = "int"),
 	})
 	@RequestMapping(value = "/getFunctionByRoleID", method = RequestMethod.GET)
-	public ResultBody getFunctionByRoleID(@RequestParam Integer AppId, @RequestParam Integer RoleID) {
+	public ResultBody getFunctionByRoleID(@RequestParam Long AppId, @RequestParam Long RoleID) {
 		ResultBody resultBody = orgPermissionFunRelationService.getFunctionByRoleID(AppId, RoleID);
 		return resultBody;
 	}
@@ -98,7 +98,7 @@ public class OrgPermissionFunRelationController {
 			@ApiImplicitParam(name = "FunID", value = "功能ID", paramType = "form", required = true, dataType = "int"),
 	})
 	@RequestMapping(value = "/getRolesByFunID", method = RequestMethod.GET)
-	public ResultBody getRolesByFunID(@RequestParam Integer AppId, @RequestParam Integer FunID){
+	public ResultBody getRolesByFunID(@RequestParam Long AppId, @RequestParam Long FunID){
 		ResultBody resultBody = orgPermissionFunRelationService.getRolesByFunID(AppId, FunID);
 		return resultBody;
 	}

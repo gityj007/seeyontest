@@ -22,7 +22,7 @@ public interface IOrgAppAccountRoleRelationService extends IService<OrgAppAccoun
      * @param RoleIDs
      * @return
      */
-    ResultBody accountBindRole(Integer AppId,Integer AccountId, List<Integer> RoleIDs);
+    ResultBody accountBindRole(Long AppId,Long AccountId, List<Long> RoleIDs);
 
     /**
      * 角色绑定人员
@@ -31,7 +31,7 @@ public interface IOrgAppAccountRoleRelationService extends IService<OrgAppAccoun
      * @param AccountIds
      * @return
      */
-    ResultBody roleBindAccount(Integer AppId,Integer RoleID, List<Integer> AccountIds);
+    ResultBody roleBindAccount(Long AppId,Long RoleID, List<Long> AccountIds);
 
     /**
      * 通过账号解除绑定角色
@@ -40,7 +40,7 @@ public interface IOrgAppAccountRoleRelationService extends IService<OrgAppAccoun
      * @param RoleIDs
      * @return
      */
-    ResultBody cancelAccountBindRole(Integer AppId,Integer AccountId,List<Integer> RoleIDs);
+    ResultBody cancelAccountBindRole(Long AppId,Long AccountId,List<Long> RoleIDs);
 
     /**
      * 通过账号解除绑定角色
@@ -49,7 +49,7 @@ public interface IOrgAppAccountRoleRelationService extends IService<OrgAppAccoun
      * @param AccountIds
      * @return
      */
-    ResultBody cancelRoleBindAccount( Integer AppId,Integer RoleID,List<Integer> AccountIds);
+    ResultBody cancelRoleBindAccount( Long AppId,Long RoleID,List<Long> AccountIds);
 
     /**
      * 查询账号信息通过角色Id
@@ -57,7 +57,7 @@ public interface IOrgAppAccountRoleRelationService extends IService<OrgAppAccoun
      * @param RoleID
      * @return
      */
-    ResultBody getAccountsByRoleID( Integer AppId, Integer RoleID);
+    ResultBody getAccountsByRoleID( Long AppId, Long RoleID);
 
     /**
      * 通过账号得到角色信息
@@ -65,5 +65,5 @@ public interface IOrgAppAccountRoleRelationService extends IService<OrgAppAccoun
      * @param AccountID
      * @return
      */
-    ResultBody getRolesByAccountID( Integer AppId,  Integer AccountID);
+    ResultBody getRolesByAccountID( Long AppId,  Long AccountID);
 }

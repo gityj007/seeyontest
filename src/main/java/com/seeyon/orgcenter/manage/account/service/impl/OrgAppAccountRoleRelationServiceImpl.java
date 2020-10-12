@@ -34,7 +34,7 @@ public class OrgAppAccountRoleRelationServiceImpl extends ServiceImpl<OrgAppAcco
      * @return
      */
     @Override
-    public ResultBody accountBindRole(Integer AppId,Integer AccountId, List<Integer> RoleIDs) {
+    public ResultBody accountBindRole(Long AppId,Long AccountId, List<Long> RoleIDs) {
         LambdaQueryWrapper<OrgAppAccountRoleRelation> orgAppAccountRoleRelationQueryWrapper = new LambdaQueryWrapper<>();
         orgAppAccountRoleRelationQueryWrapper.
                 eq(OrgAppAccountRoleRelation::getAccountId,AccountId).
@@ -77,7 +77,7 @@ public class OrgAppAccountRoleRelationServiceImpl extends ServiceImpl<OrgAppAcco
      * @return
      */
     @Override
-    public ResultBody roleBindAccount(Integer AppId,Integer RoleID, List<Integer> AccountIds) {
+    public ResultBody roleBindAccount(Long AppId,Long RoleID, List<Long> AccountIds) {
         LambdaQueryWrapper<OrgAppAccountRoleRelation> orgAppAccountRoleRelationQueryWrapper = new LambdaQueryWrapper<>();
         orgAppAccountRoleRelationQueryWrapper.
                 eq(OrgAppAccountRoleRelation::getRoleId,RoleID).
@@ -120,7 +120,7 @@ public class OrgAppAccountRoleRelationServiceImpl extends ServiceImpl<OrgAppAcco
      * @return
      */
     @Override
-    public ResultBody cancelAccountBindRole(Integer AppId, Integer AccountId, List<Integer> RoleIDs) {
+    public ResultBody cancelAccountBindRole(Long AppId, Long AccountId, List<Long> RoleIDs) {
         QueryWrapper<OrgAppAccountRoleRelation> orgAppAccountRoleRelationQueryWrapper=new QueryWrapper<OrgAppAccountRoleRelation>();
         orgAppAccountRoleRelationQueryWrapper.
                 eq("appId",AppId).
@@ -140,7 +140,7 @@ public class OrgAppAccountRoleRelationServiceImpl extends ServiceImpl<OrgAppAcco
      * @return
      */
     @Override
-    public ResultBody cancelRoleBindAccount(Integer AppId, Integer RoleID, List<Integer> AccountIds) {
+    public ResultBody cancelRoleBindAccount(Long AppId, Long RoleID, List<Long> AccountIds) {
         QueryWrapper<OrgAppAccountRoleRelation> orgAppAccountRoleRelationQueryWrapper=new QueryWrapper<OrgAppAccountRoleRelation>();
         orgAppAccountRoleRelationQueryWrapper.
                 eq("appId",AppId).
@@ -159,7 +159,7 @@ public class OrgAppAccountRoleRelationServiceImpl extends ServiceImpl<OrgAppAcco
      * @return
      */
     @Override
-    public ResultBody getAccountsByRoleID(Integer AppId, Integer RoleID) {
+    public ResultBody getAccountsByRoleID(Long AppId, Long RoleID) {
         List<OrgAccount> OrgAccounts = getBaseMapper().getAccountsByRoleID(AppId, RoleID);
         ResultBody resultBody=ResultBody.success(OrgAccounts);
         resultBody.setMessage("查询成功");
@@ -174,7 +174,7 @@ public class OrgAppAccountRoleRelationServiceImpl extends ServiceImpl<OrgAppAcco
      * @return
      */
     @Override
-    public ResultBody getRolesByAccountID(Integer AppId, Integer AccountID) {
+    public ResultBody getRolesByAccountID(Long AppId, Long AccountID) {
         List<OrgRole> orgRoles = getBaseMapper().getRolesByAccountID(AppId, AccountID);
         ResultBody resultBody=ResultBody.success(orgRoles);
         resultBody.setMessage("查询成功");

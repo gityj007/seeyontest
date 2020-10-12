@@ -26,7 +26,7 @@ public class OrgAccountServiceImpl extends ServiceImpl<OrgAccountMapper, OrgAcco
      * @param Pass
      */
     @Override
-    public void updatePass(Integer id, String Pass) {
+    public void updatePass(Long id, String Pass) {
         OrgAccountMapper orgAccountMapper = getBaseMapper();
         //条件
         UpdateWrapper<OrgAccount> orgAccountUpdateWrapper = new UpdateWrapper<>();

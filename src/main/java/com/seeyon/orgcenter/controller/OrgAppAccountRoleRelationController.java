@@ -38,7 +38,7 @@ public class OrgAppAccountRoleRelationController {
             @ApiImplicitParam(name = "RoleIDs", value = "角色IDs", paramType = "form", required = true, dataType = "list")
     })
     @RequestMapping(value = "/accountBindRole", method = RequestMethod.POST)
-    public ResultBody accountBindRole(@RequestParam Integer AppId, @RequestParam Integer AccountId, @RequestParam List<Integer> RoleIDs) {
+    public ResultBody accountBindRole(@RequestParam Long AppId, @RequestParam Long AccountId, @RequestParam List<Long> RoleIDs) {
         ResultBody resultBody = orgAppAccountRoleRelationService.accountBindRole(AppId, AccountId, RoleIDs);
         return resultBody;
     }
@@ -50,7 +50,7 @@ public class OrgAppAccountRoleRelationController {
             @ApiImplicitParam(name = "AccountIds", value = "账号IDs", paramType = "form", required = true, dataType = "list")
     })
     @RequestMapping(value = "/roleBindAccount", method = RequestMethod.POST)
-    public ResultBody roleBindAccount(@RequestParam Integer AppId, @RequestParam Integer RoleID, @RequestParam List<Integer> AccountIds) {
+    public ResultBody roleBindAccount(@RequestParam Long AppId, @RequestParam Long RoleID, @RequestParam List<Long> AccountIds) {
         ResultBody resultBody = orgAppAccountRoleRelationService.roleBindAccount(AppId, RoleID, AccountIds);
         return resultBody;
     }
@@ -67,7 +67,7 @@ public class OrgAppAccountRoleRelationController {
             @ApiImplicitParam(name = "RoleIDs", value = "角色IDs", paramType = "form", required = true, dataType = "list")
     })
     @RequestMapping(value = "/cancelAccountBindRole", method = RequestMethod.POST)
-    public ResultBody cancelAccountBindRole(@RequestParam Integer AppId, @RequestParam Integer AccountId, @RequestParam List<Integer> RoleIDs) {
+    public ResultBody cancelAccountBindRole(@RequestParam Long AppId, @RequestParam Long AccountId, @RequestParam List<Long> RoleIDs) {
         ResultBody resultBody = orgAppAccountRoleRelationService.cancelAccountBindRole(AppId, AccountId, RoleIDs);
         return resultBody;
     }
@@ -79,7 +79,7 @@ public class OrgAppAccountRoleRelationController {
             @ApiImplicitParam(name = "AccountIds", value = "账号IDs", paramType = "form", required = true, dataType = "list")
     })
     @RequestMapping(value = "/cancelRoleBindAccount", method = RequestMethod.POST)
-    public ResultBody cancelRoleBindAccount(@RequestParam Integer AppId, @RequestParam Integer RoleID, @RequestParam List<Integer> AccountIds) {
+    public ResultBody cancelRoleBindAccount(@RequestParam Long AppId, @RequestParam Long RoleID, @RequestParam List<Long> AccountIds) {
         ResultBody resultBody = orgAppAccountRoleRelationService.cancelRoleBindAccount(AppId, RoleID, AccountIds);
         return resultBody;
     }
@@ -93,7 +93,7 @@ public class OrgAppAccountRoleRelationController {
             @ApiImplicitParam(name = "RoleID", value = "角色ID", paramType = "form", required = true, dataType = "int"),
     })
     @RequestMapping(value = "/getAccountsByRoleID", method = RequestMethod.GET)
-    public ResultBody getAccountsByRoleID(@RequestParam Integer AppId, @RequestParam Integer RoleID) {
+    public ResultBody getAccountsByRoleID(@RequestParam Long AppId, @RequestParam Long RoleID) {
         ResultBody resultBody = orgAppAccountRoleRelationService.getAccountsByRoleID(AppId, RoleID);
         return resultBody;
     }
@@ -105,7 +105,7 @@ public class OrgAppAccountRoleRelationController {
             @ApiImplicitParam(name = "AccountID", value = "账号ID", paramType = "form", required = true, dataType = "int"),
     })
     @RequestMapping(value = "/getRolesByAccountID", method = RequestMethod.GET)
-    public ResultBody getRolesByAccountID(@RequestParam Integer AppId, @RequestParam Integer AccountID){
+    public ResultBody getRolesByAccountID(@RequestParam Long AppId, @RequestParam Long AccountID){
         ResultBody resultBody = orgAppAccountRoleRelationService.getRolesByAccountID(AppId, AccountID);
         return resultBody;
     }

@@ -26,22 +26,22 @@ public class OrgPermissionDataRelation implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "ID",type = IdType.AUTO)
-    private Integer id;
+    private Long id;
 
     @TableField("APP_ID")
-    private Integer appId;
+    private Long appId;
 
     @TableField("NAME")
     private String name;
 
     @TableField("ORG_ID")
-    private Integer orgId;
+    private Long orgId;
 
     @TableField("IS_AVAILABLE_CHILD")
     private Integer isAvailableChild;
 
     @TableField("ROLE_ID")
-    private Integer roleId;
+    private Long roleId;
 
 
 }

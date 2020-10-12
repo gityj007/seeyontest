@@ -36,7 +36,7 @@ public class OrgFunctionController {
 	@ApiOperation(value="获取功能byID", notes="获取功能byID", produces="application/json")
 	@ApiImplicitParam(name = "id", value = "功能ID", paramType = "query", required = true, dataType = "long")
 	@RequestMapping(value = "/getOrgFunctionByID",method = RequestMethod.GET)
-	public ResultBody getOrgFunctionByID(@RequestParam Integer id){
+	public ResultBody getOrgFunctionByID(@RequestParam Long id){
 		ResultBody resultBody = ResultBody.success(orgFunctionService.getById(id));
 		resultBody.setMessage("查询成功");
 		return resultBody;
@@ -54,7 +54,7 @@ public class OrgFunctionController {
 	@ApiOperation(value="删除功能byID", notes="删除功能byID", produces="application/json")
 	@ApiImplicitParam(name = "id", value = "功能ID", paramType = "form", required = true, dataType = "long")
 	@RequestMapping(value = "/delOrgFunction",method = RequestMethod.POST)
-	public ResultBody delOrgFunction(@RequestParam Integer id){
+	public ResultBody delOrgFunction(@RequestParam Long id){
 		ResultBody resultBody=ResultBody.success(orgFunctionService.removeById(id));
 		resultBody.setMessage("删除成功");
 		return resultBody;

@@ -26,7 +26,7 @@ public interface OrgAppAccountRoleRelationMapper extends BaseMapper<OrgAppAccoun
      * @param RoleID
      * @return
      */
-    List<OrgAccount> getAccountsByRoleID(@Param(value = "AppId") Integer AppId, @Param(value = "RoleID") Integer RoleID);
+    List<OrgAccount> getAccountsByRoleID(@Param(value = "AppId") Long AppId, @Param(value = "RoleID") Long RoleID);
 
 
     /**
@@ -35,6 +35,6 @@ public interface OrgAppAccountRoleRelationMapper extends BaseMapper<OrgAppAccoun
      * @param AccountID
      * @return
      */
-    List<OrgRole> getRolesByAccountID(@Param(value = "AppId") Integer AppId, @Param(value = "AccountID") Integer AccountID);
+    List<OrgRole> getRolesByAccountID(@Param(value = "AppId") Long AppId, @Param(value = "AccountID") Long AccountID);
 
 }

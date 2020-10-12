@@ -25,7 +25,7 @@ public class OrgAccount implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @TableId(value = "ID",type = IdType.AUTO)
-    private Integer id;
+    private Long id;
 
     @TableField("LOGIN_NAME")
     private String loginName;

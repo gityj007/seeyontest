@@ -25,7 +25,7 @@ public interface IOrgPermissionFunRelationService extends IService<OrgPermission
 	 * @param name
 	 * @return
 	 */
-	ResultBody roleBindfunction(@RequestParam Integer RoleId,@RequestParam List<Integer> funIDs,@RequestParam Integer AppId,@RequestParam String name);
+	ResultBody roleBindfunction(@RequestParam Long RoleId,@RequestParam List<Long> funIDs,@RequestParam Long AppId,@RequestParam String name);
 
 	/**
 	 * 角色绑定功能权限
@@ -35,7 +35,7 @@ public interface IOrgPermissionFunRelationService extends IService<OrgPermission
 	 * @param RoleIDs
 	 * @return
 	 */
-	ResultBody functionBindRole(Integer AppId,Integer funID,String name,List<Integer> RoleIDs);
+	ResultBody functionBindRole(Long AppId,Long funID,String name,List<Long> RoleIDs);
 
 	/**
 	 * 通过角色解除绑定功能权限
@@ -44,7 +44,7 @@ public interface IOrgPermissionFunRelationService extends IService<OrgPermission
 	 * @param FunIDs
 	 * @return
 	 */
-	ResultBody cancelRoleBindfunction(Integer AppId,Integer RoleID,List<Integer> FunIDs);
+	ResultBody cancelRoleBindfunction(Long AppId,Long RoleID,List<Long> FunIDs);
 
 	/**
 	 * 通过功能解除绑定角色
@@ -53,7 +53,7 @@ public interface IOrgPermissionFunRelationService extends IService<OrgPermission
 	 * @param RoleIDs
 	 * @return
 	 */
-	ResultBody cancelFunctionBindRole(Integer AppId,Integer FunID,List<Integer> RoleIDs);
+	ResultBody cancelFunctionBindRole(Long AppId,Long FunID,List<Long> RoleIDs);
 
 	/**
 	 * 查询功能信息通过角色Id
@@ -61,7 +61,7 @@ public interface IOrgPermissionFunRelationService extends IService<OrgPermission
 	 * @param RoleID
 	 * @return
 	 */
-	ResultBody getFunctionByRoleID(Integer AppId,Integer RoleID);
+	ResultBody getFunctionByRoleID(Long AppId,Long RoleID);
 
 	/**
 	 * 通过功能得到角色信息
@@ -69,5 +69,5 @@ public interface IOrgPermissionFunRelationService extends IService<OrgPermission
 	 * @param FunID
 	 * @return
 	 */
-	ResultBody getRolesByFunID( Integer AppId,  Integer FunID);
+	ResultBody getRolesByFunID( Long AppId,  Long FunID);
 }
