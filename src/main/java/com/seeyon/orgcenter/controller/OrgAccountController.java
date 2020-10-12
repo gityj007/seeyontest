@@ -38,7 +38,19 @@ public class OrgAccountController {
     @RequestMapping(value = "/getOrgAccountByID",method = RequestMethod.GET)
     public ResultBody getOrgAccountByID(@RequestParam Long id){
         ResultBody resultBody = ResultBody.success(orgAccountService.getById(id));
-        resultBody.setMessage("查询成功");
+        resultBody.setMsg("查询成功");
+        return resultBody;
+    }
+
+
+    @ApiOperation(value="获取账号IDByLoginInfo", notes="获取账号IDByLoginInfo", produces="application/json")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "loginName", value = "登录名", paramType = "query", required = true, dataType = "string"),
+            @ApiImplicitParam(name = "password", value = "password", paramType = "query", required = true, dataType = "string")
+    })
+    @RequestMapping(value = "/getAccountIdByLoginInfo",method = RequestMethod.GET)
+    public ResultBody getAccountIdByLoginInfo(@RequestParam String loginName,@RequestParam String password){
+        ResultBody resultBody =orgAccountService.getAccountIdByLoginInfo(loginName,password);
         return resultBody;
     }
 
@@ -53,7 +65,7 @@ public class OrgAccountController {
             orgAccount.setCredentialValue(passCode );
         }
         ResultBody resultBody=ResultBody.success(orgAccountService.saveOrUpdate(orgAccount));
-        resultBody.setMessage("更新成功");
+        resultBody.setMsg("更新成功");
         return resultBody;
     }
 
@@ -68,7 +80,7 @@ public class OrgAccountController {
 
 
         ResultBody resultBody=ResultBody.success(orgAccountService.saveBatch(orgAccounts));
-        resultBody.setMessage("批量添加账号成功");
+        resultBody.setMsg("批量添加账号成功");
         return resultBody;
     }
 
@@ -77,7 +89,7 @@ public class OrgAccountController {
     @RequestMapping(value = "/delOrgAccountByID",method = RequestMethod.POST)
     public ResultBody delOrgAccountByID(@RequestParam Long id){
         ResultBody resultBody=ResultBody.success(orgAccountService.removeById(id));
-        resultBody.setMessage("删除成功");
+        resultBody.setMsg("删除成功");
         return resultBody;
     }
 
@@ -90,7 +102,7 @@ public class OrgAccountController {
     public ResultBody updatePassById(@RequestParam Long id,@RequestParam String Pass){
         orgAccountService.updatePass(id,Pass);
         ResultBody resultBody=ResultBody.success(null);
-        resultBody.setMessage("密码更新成功");
+        resultBody.setMsg("密码更新成功");
         return resultBody;
     }
 

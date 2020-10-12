@@ -37,4 +37,15 @@ public interface OrgAppAccountRoleRelationMapper extends BaseMapper<OrgAppAccoun
      */
     List<OrgRole> getRolesByAccountID(@Param(value = "AppId") Long AppId, @Param(value = "AccountID") Long AccountID);
 
+
+    /**
+     * 获取角色通过账号及分组
+     *
+     * @param AccountId
+     * @param AppId
+     * @param DoMain
+     * @return
+     */
+    List<OrgRole> getRolesByAccDomain(@Param(value = "AccountId") Long AccountId,@Param(value = "AppId") Long AppId,@Param(value = "DoMain") String DoMain);
+
 }

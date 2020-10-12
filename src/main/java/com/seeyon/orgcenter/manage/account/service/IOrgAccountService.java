@@ -1,7 +1,9 @@
 package com.seeyon.orgcenter.manage.account.service;
 
+import com.seeyon.orgcenter.common.ResultBody;
 import com.seeyon.orgcenter.manage.account.entity.OrgAccount;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * <p>
@@ -20,6 +22,14 @@ public interface IOrgAccountService extends IService<OrgAccount> {
      * @param Pass
      */
    void updatePass(Long id,String Pass);
+
+    /**
+     * 获取账号IDByLoginInfo
+     * @param loginName
+     * @param password
+     * @return
+     */
+   ResultBody getAccountIdByLoginInfo( String loginName,  String password);
 
     /**
      * 密码加密

@@ -129,7 +129,7 @@ public class OrgPermissionFunRelationServiceImpl extends ServiceImpl<OrgPermissi
 				eq(OrgPermissionFunRelation::getRoleId,RoleID)
 				.in(OrgPermissionFunRelation::getFunId,FunIDs);
 		ResultBody resultBody=ResultBody.success(remove(orgPermissionFunRelationQueryWrapper));
-		resultBody.setMessage("删除成功");
+		resultBody.setMsg("删除成功");
 		return resultBody;
 	}
 
@@ -149,7 +149,7 @@ public class OrgPermissionFunRelationServiceImpl extends ServiceImpl<OrgPermissi
 				eq(OrgPermissionFunRelation::getFunId,FunID)
 				.in(OrgPermissionFunRelation::getRoleId,RoleIDs);
 		ResultBody resultBody=ResultBody.success(remove(orgPermissionFunRelationQueryWrapper));
-		resultBody.setMessage("删除成功");
+		resultBody.setMsg("删除成功");
 		return resultBody;
 	}
 
@@ -163,7 +163,7 @@ public class OrgPermissionFunRelationServiceImpl extends ServiceImpl<OrgPermissi
 	public ResultBody getFunctionByRoleID(Long AppId,Long RoleID){
 		List<OrgFunction> orgFunction = getBaseMapper().getFunctionByRoleID(AppId, RoleID);
 		ResultBody resultBody=ResultBody.success(orgFunction);
-		resultBody.setMessage("查询成功");
+		resultBody.setMsg("查询成功");
 		return resultBody;
 	}
 
@@ -178,7 +178,7 @@ public class OrgPermissionFunRelationServiceImpl extends ServiceImpl<OrgPermissi
 	public ResultBody getRolesByFunID(Long AppId, Long FunID) {
 		List<OrgRole> orgFunction = getBaseMapper().getRolesByFunID(AppId, FunID);
 		ResultBody resultBody=ResultBody.success(orgFunction);
-		resultBody.setMessage("查询成功");
+		resultBody.setMsg("查询成功");
 		return resultBody;
 	}
 

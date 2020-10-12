@@ -65,5 +65,14 @@ public interface IOrgAppAccountRoleRelationService extends IService<OrgAppAccoun
      * @param AccountID
      * @return
      */
-    ResultBody getRolesByAccountID( Long AppId,  Long AccountID);
+    ResultBody getRolesByAccountID(Long AppId,Long AccountID);
+
+    /**
+     * 获取角色通过账号及分组
+     * @param AccountId
+     * @param AppId
+     * @param DoMain
+     * @return
+     */
+    ResultBody getRolesByAccDomain(Long AccountId,Long AppId,String DoMain);
 }

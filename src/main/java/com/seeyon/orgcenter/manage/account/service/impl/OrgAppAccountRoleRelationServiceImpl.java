@@ -127,7 +127,7 @@ public class OrgAppAccountRoleRelationServiceImpl extends ServiceImpl<OrgAppAcco
                 eq(OrgAppAccountRoleRelation::getAccountId,AccountId)
                 .in(OrgAppAccountRoleRelation::getRoleId,RoleIDs);
         ResultBody resultBody=ResultBody.success(remove(orgAppAccountRoleRelationQueryWrapper));
-        resultBody.setMessage("删除成功");
+        resultBody.setMsg("删除成功");
         return resultBody;
     }
 
@@ -147,7 +147,7 @@ public class OrgAppAccountRoleRelationServiceImpl extends ServiceImpl<OrgAppAcco
                 eq(OrgAppAccountRoleRelation::getRoleId,RoleID)
                 .in(OrgAppAccountRoleRelation::getAccountId,AccountIds);
         ResultBody resultBody=ResultBody.success(remove(orgAppAccountRoleRelationQueryWrapper));
-        resultBody.setMessage("删除成功");
+        resultBody.setMsg("删除成功");
         return resultBody;
     }
 
@@ -162,7 +162,7 @@ public class OrgAppAccountRoleRelationServiceImpl extends ServiceImpl<OrgAppAcco
     public ResultBody getAccountsByRoleID(Long AppId, Long RoleID) {
         List<OrgAccount> OrgAccounts =  getBaseMapper().getAccountsByRoleID(AppId, RoleID);;
         ResultBody resultBody=ResultBody.success(OrgAccounts);
-        resultBody.setMessage("查询成功");
+        resultBody.setMsg("查询成功");
         return resultBody;
     }
 
@@ -177,7 +177,23 @@ public class OrgAppAccountRoleRelationServiceImpl extends ServiceImpl<OrgAppAcco
     public ResultBody getRolesByAccountID(Long AppId, Long AccountID) {
         List<OrgRole> orgRoles = getBaseMapper().getRolesByAccountID(AppId, AccountID);
         ResultBody resultBody=ResultBody.success(orgRoles);
-        resultBody.setMessage("查询成功");
+        resultBody.setMsg("查询成功");
+        return resultBody;
+    }
+
+    /**
+     * 获取角色通过账号及分组
+     *
+     * @param AccountID
+     * @param AppId
+     * @param DoMain
+     * @return
+     */
+    @Override
+    public ResultBody getRolesByAccDomain(Long AccountID, Long AppId, String DoMain) {
+        List<OrgRole> orgRoles = getBaseMapper().getRolesByAccDomain(AccountID, AppId,DoMain);
+        ResultBody resultBody=ResultBody.success(orgRoles);
+        resultBody.setMsg("查询成功");
         return resultBody;
     }
 }

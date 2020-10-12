@@ -38,7 +38,7 @@ public class OrgFunctionController {
 	@RequestMapping(value = "/getOrgFunctionByID",method = RequestMethod.GET)
 	public ResultBody getOrgFunctionByID(@RequestParam Long id){
 		ResultBody resultBody = ResultBody.success(orgFunctionService.getById(id));
-		resultBody.setMessage("查询成功");
+		resultBody.setMsg("查询成功");
 		return resultBody;
 	}
 
@@ -47,7 +47,7 @@ public class OrgFunctionController {
 	@RequestMapping(value = "/saveOrUpdateOrgFunction",method = RequestMethod.POST)
 	public ResultBody saveOrUpdateOrgFunction(@RequestBody OrgFunction orgFunction){
 		ResultBody resultBody=ResultBody.success(orgFunctionService.saveOrUpdate(orgFunction));
-		resultBody.setMessage("更新成功");
+		resultBody.setMsg("更新成功");
 		return resultBody;
 	}
 
@@ -56,7 +56,7 @@ public class OrgFunctionController {
 	@RequestMapping(value = "/delOrgFunction",method = RequestMethod.POST)
 	public ResultBody delOrgFunction(@RequestParam Long id){
 		ResultBody resultBody=ResultBody.success(orgFunctionService.removeById(id));
-		resultBody.setMessage("删除成功");
+		resultBody.setMsg("删除成功");
 		return resultBody;
 	}
 }

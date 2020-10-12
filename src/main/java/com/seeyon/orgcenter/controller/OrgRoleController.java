@@ -33,7 +33,7 @@ public class OrgRoleController {
     @RequestMapping(value = "/saveOrUpdateOrgAccount",method = RequestMethod.POST)
     public ResultBody saveOrUpdateOrgRole(@RequestBody OrgRole orgRole){
         ResultBody resultBody=ResultBody.success(orgRoleService.saveOrUpdate(orgRole));
-        resultBody.setMessage("更新成功");
+        resultBody.setMsg("更新成功");
         return resultBody;
     }
 
@@ -41,7 +41,7 @@ public class OrgRoleController {
     @RequestMapping(value = "/insertOrgRoleBatch",method = RequestMethod.POST)
     public ResultBody insertOrgRoleBatch(@RequestBody List<OrgRole> orgRoles){
         ResultBody resultBody=ResultBody.success(orgRoleService.saveBatch(orgRoles));
-        resultBody.setMessage("批量添加角色成功");
+        resultBody.setMsg("批量添加角色成功");
         return resultBody;
     }
 
@@ -51,7 +51,7 @@ public class OrgRoleController {
     @RequestMapping(value = "/delOrgRoleByID",method = RequestMethod.POST)
     public ResultBody delOrgRoleByID(@RequestParam Long id){
         ResultBody resultBody=ResultBody.success(orgRoleService.removeById(id));
-        resultBody.setMessage("删除角色成功");
+        resultBody.setMsg("删除角色成功");
         return resultBody;
     }
 

@@ -1,6 +1,6 @@
 package com.seeyon.orgcenter.config;
 
-import com.seeyon.orgcenter.common.CommonEnum;
+import com.seeyon.orgcenter.common.ErrorEnum;
 import com.seeyon.orgcenter.common.ResultBody;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,7 +44,7 @@ public class GlobalExceptionHandler {
 	@ResponseBody
 	public ResultBody exceptionHandler(HttpServletRequest req, NullPointerException e){
 		logger.error("发生空指针异常！原因是:",e);
-		return ResultBody.error(CommonEnum.BODY_NOT_MATCH);
+		return ResultBody.error(ErrorEnum.FATAL_ERROR);
 	}
 
 
@@ -58,6 +58,6 @@ public class GlobalExceptionHandler {
 	@ResponseBody
 	public ResultBody exceptionHandler(HttpServletRequest req, Exception e){
     	logger.error("未知异常！原因是:",e);
-       	return ResultBody.error(CommonEnum.INTERNAL_SERVER_ERROR);
+		return ResultBody.error(ErrorEnum.FATAL_ERROR);
     }
 }

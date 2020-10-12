@@ -9,44 +9,48 @@ public class ResultBody {
 	/**
 	 * 响应消息
 	 */
-	private String message;
+	private String msg;
+
+
+	/**
+	 * 错误代码
+	 */
+	private String err_code;
+
+	/**
+	 * 错误消息
+	 */
+	private String err_msg;
+
+
+
+
 
 	/**
 	 * 响应结果
 	 */
-	private Object result;
+	private Object data;
 
 	public ResultBody() {
 	}
 
 	public ResultBody(BaseErrorInfoInterface errorInfo) {
-		this.code = errorInfo.getResultCode();
-		this.message = errorInfo.getResultMsg();
+		this.code = errorInfo.getCode();
+		this.msg = errorInfo.getMsg();
+		this.err_code = errorInfo.getError_Code();
+		this.err_msg = errorInfo.getError_Msg();
 	}
 
-	public String getCode() {
-		return code;
+	public ResultBody(BaseSuccessInfoInterface successInfo) {
+		this.code = successInfo.getCode();
+		this.msg = successInfo.getMsg();
+		this.data = successInfo.getData();
 	}
 
-	public void setCode(String code) {
-		this.code = code;
-	}
 
-	public String getMessage() {
-		return message;
-	}
 
-	public void setMessage(String message) {
-		this.message = message;
-	}
 
-	public Object getResult() {
-		return result;
-	}
 
-	public void setResult(Object result) {
-		this.result = result;
-	}
 
 	/**
 	 * 成功
@@ -64,9 +68,9 @@ public class ResultBody {
 	 */
 	public static ResultBody success(Object data) {
 		ResultBody rb = new ResultBody();
-		rb.setCode(CommonEnum.SUCCESS.getResultCode());
-		rb.setMessage(CommonEnum.SUCCESS.getResultMsg());
-		rb.setResult(data);
+		rb.setCode(SuccessEnum.SUCCESS.getCode());
+		rb.setMsg(SuccessEnum.SUCCESS.getMsg());
+		rb.setData(data);
 		return rb;
 	}
 
@@ -75,37 +79,78 @@ public class ResultBody {
 	 */
 	public static ResultBody error(BaseErrorInfoInterface errorInfo) {
 		ResultBody rb = new ResultBody();
-		rb.setCode(errorInfo.getResultCode());
-		rb.setMessage(errorInfo.getResultMsg());
-		rb.setResult(null);
+		rb.setCode(errorInfo.getCode());
+		rb.setMsg(errorInfo.getMsg());
+		rb.setErr_code(errorInfo.getError_Code());
+		rb.setErr_msg(errorInfo.getError_Msg());
 		return rb;
 	}
 
 	/**
 	 * 失败
 	 */
-	public static ResultBody error(String code, String message) {
+	public static ResultBody error(String ErrCode, String ErrMsg) {
 		ResultBody rb = new ResultBody();
-		rb.setCode(code);
-		rb.setMessage(message);
-		rb.setResult(null);
+		rb.setCode("5000");
+		rb.setMsg("业务处理失败");
+		rb.setErr_code(ErrCode);
+		rb.setErr_msg(ErrMsg);
 		return rb;
 	}
 
 	/**
 	 * 失败
 	 */
-	public static ResultBody error( String message) {
+	public static ResultBody error( String ErrMsg) {
 		ResultBody rb = new ResultBody();
-		rb.setCode("-1");
-		rb.setMessage(message);
-		rb.setResult(null);
+		rb.setCode("5000");
+		rb.setMsg("业务处理失败");
+		rb.setErr_msg(ErrMsg);
 		return rb;
 	}
 
-//	@Override
-//	public String toString() {
-//		return JSONObject.toJSONString(this);
-//	}
+
+
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	public String getMsg() {
+		return msg;
+	}
+
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+
+	public String getErr_code() {
+		return err_code;
+	}
+
+	public void setErr_code(String err_code) {
+		this.err_code = err_code;
+	}
+
+	public String getErr_msg() {
+		return err_msg;
+	}
+
+	public void setErr_msg(String err_msg) {
+		this.err_msg = err_msg;
+	}
+
+	public Object getData() {
+		return data;
+	}
+
+	public void setData(Object data) {
+		this.data = data;
+	}
+
 
 }

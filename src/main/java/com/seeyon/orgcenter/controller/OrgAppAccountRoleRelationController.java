@@ -74,8 +74,8 @@ public class OrgAppAccountRoleRelationController {
 
     @ApiOperation(value = "通过角色解除绑定账号", notes = "通过角色解除绑定账号", produces = "application/json")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "AppId", value = "应用ID", paramType = "form", required = true, dataType = "int"),
-            @ApiImplicitParam(name = "RoleID", value = "角色ID", paramType = "form", required = true, dataType = "int"),
+            @ApiImplicitParam(name = "AppId", value = "应用ID", paramType = "form", required = true, dataType = "long"),
+            @ApiImplicitParam(name = "RoleID", value = "角色ID", paramType = "form", required = true, dataType = "long"),
             @ApiImplicitParam(name = "AccountIds", value = "账号IDs", paramType = "form", required = true, dataType = "list")
     })
     @RequestMapping(value = "/cancelRoleBindAccount", method = RequestMethod.POST)
@@ -101,13 +101,25 @@ public class OrgAppAccountRoleRelationController {
 
     @ApiOperation(value = "通过账号得到角色信息", notes = "通过账号得到角色信息", produces = "application/json")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "AppId", value = "应用ID", paramType = "query", required = true, dataType = "int"),
-            @ApiImplicitParam(name = "AccountID", value = "账号ID", paramType = "query", required = true, dataType = "int"),
+            @ApiImplicitParam(name = "AppId", value = "应用ID", paramType = "query", required = true, dataType = "long"),
+            @ApiImplicitParam(name = "AccountID", value = "账号ID", paramType = "query", required = true, dataType = "long"),
     })
     @RequestMapping(value = "/getRolesByAccountID", method = RequestMethod.GET)
     public ResultBody getRolesByAccountID(@RequestParam Long AppId, @RequestParam Long AccountID){
         ResultBody resultBody = orgAppAccountRoleRelationService.getRolesByAccountID(AppId, AccountID);
         return resultBody;
+    }
+
+
+    @ApiOperation(value="获取角色通过账号及分组", notes="获取角色通过账号及分组", produces="application/json")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "accountId", value = "账号ID", paramType = "query", required = true, dataType = "long"),
+            @ApiImplicitParam(name = "appId", value = "应用ID", paramType = "query", required = true, dataType = "long"),
+            @ApiImplicitParam(name = "doMain", value = "分组", paramType = "query", required = true, dataType = "string"),
+    })
+    @RequestMapping(value = "/getRolesByAccDomain",method = RequestMethod.GET)
+    public ResultBody getRolesByAccDomain(@RequestParam Long accountId,@RequestParam Long appId,@RequestParam String doMain){
+        return orgAppAccountRoleRelationService.getRolesByAccDomain(accountId,appId,doMain);
     }
 
 

@@ -1,9 +1,13 @@
 package com.seeyon.orgcenter.common;
 
 public interface BaseErrorInfoInterface {
-    /** 错误码*/
-	 String getResultCode();
+    /** 状态*/
+	 String getCode();
 	
-	/** 错误描述*/
-	 String getResultMsg();
+	/** 描述*/
+	 String getMsg();
+
+	String getError_Code();
+
+	String getError_Msg();
 }

@@ -30,7 +30,7 @@ public class OrgTreeController{
 	@RequestMapping(value = "/saveOrUpdateOrgTree",method = RequestMethod.POST)
 	public ResultBody saveOrUpdateOrgTree(@RequestBody OrgTree orgTree){
 		ResultBody resultBody=ResultBody.success(orgTreeService.saveOrUpdate(orgTree));
-		resultBody.setMessage("更新成功");
+		resultBody.setMsg("更新成功");
 		return resultBody;
 	}
 
@@ -39,7 +39,7 @@ public class OrgTreeController{
 	@RequestMapping(value = "/delOrgTreeByID",method = RequestMethod.POST)
 	public ResultBody delOrgTreeByID(@RequestParam Long id){
 		ResultBody resultBody=ResultBody.success(orgTreeService.removeById(id));
-		resultBody.setMessage("删除组织成功");
+		resultBody.setMsg("删除组织成功");
 		return resultBody;
 	}
 

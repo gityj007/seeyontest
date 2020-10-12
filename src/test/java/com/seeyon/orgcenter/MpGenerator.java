@@ -64,7 +64,7 @@ public class MpGenerator {
         dsc.setUrl("jdbc:mysql:///seeyontest?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
-        dsc.setPassword("admin123456");
+        dsc.setPassword("root123456");
         mpg.setDataSource(dsc);
 
         // 包配置
