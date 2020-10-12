@@ -89,8 +89,8 @@ public class OrgAppAccountRoleRelationController {
 
     @ApiOperation(value = "通过角色得到账号信息", notes = "通过角色得到账号信息", produces = "application/json")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "AppId", value = "应用ID", paramType = "form", required = true, dataType = "int"),
-            @ApiImplicitParam(name = "RoleID", value = "角色ID", paramType = "form", required = true, dataType = "int"),
+            @ApiImplicitParam(name = "AppId", value = "应用ID", paramType = "query", required = true, dataType = "long"),
+            @ApiImplicitParam(name = "RoleID", value = "角色ID", paramType = "query", required = true, dataType = "long"),
     })
     @RequestMapping(value = "/getAccountsByRoleID", method = RequestMethod.GET)
     public ResultBody getAccountsByRoleID(@RequestParam Long AppId, @RequestParam Long RoleID) {
@@ -101,8 +101,8 @@ public class OrgAppAccountRoleRelationController {
 
     @ApiOperation(value = "通过账号得到角色信息", notes = "通过账号得到角色信息", produces = "application/json")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "AppId", value = "应用ID", paramType = "form", required = true, dataType = "int"),
-            @ApiImplicitParam(name = "AccountID", value = "账号ID", paramType = "form", required = true, dataType = "int"),
+            @ApiImplicitParam(name = "AppId", value = "应用ID", paramType = "query", required = true, dataType = "int"),
+            @ApiImplicitParam(name = "AccountID", value = "账号ID", paramType = "query", required = true, dataType = "int"),
     })
     @RequestMapping(value = "/getRolesByAccountID", method = RequestMethod.GET)
     public ResultBody getRolesByAccountID(@RequestParam Long AppId, @RequestParam Long AccountID){
