@@ -83,8 +83,8 @@ public class OrgPermissionFunRelationController {
 
 	@ApiOperation(value = "通过角色得到功能信息", notes = "通过角色得到功能信息", produces = "application/json")
 	@ApiImplicitParams({
-			@ApiImplicitParam(name = "AppId", value = "应用ID", paramType = "form", required = true, dataType = "int"),
-			@ApiImplicitParam(name = "RoleID", value = "角色ID", paramType = "form", required = true, dataType = "int"),
+			@ApiImplicitParam(name = "AppId", value = "应用ID", paramType = "query", required = true, dataType = "int"),
+			@ApiImplicitParam(name = "RoleID", value = "角色ID", paramType = "query", required = true, dataType = "int"),
 	})
 	@RequestMapping(value = "/getFunctionByRoleID", method = RequestMethod.GET)
 	public ResultBody getFunctionByRoleID(@RequestParam Long AppId, @RequestParam Long RoleID) {
@@ -94,8 +94,8 @@ public class OrgPermissionFunRelationController {
 
 	@ApiOperation(value = "通过功能得到角色信息", notes = "通过功能得到角色信息", produces = "application/json")
 	@ApiImplicitParams({
-			@ApiImplicitParam(name = "AppId", value = "应用ID", paramType = "form", required = true, dataType = "int"),
-			@ApiImplicitParam(name = "FunID", value = "功能ID", paramType = "form", required = true, dataType = "int"),
+			@ApiImplicitParam(name = "AppId", value = "应用ID", paramType = "query", required = true, dataType = "int"),
+			@ApiImplicitParam(name = "FunID", value = "功能ID", paramType = "query", required = true, dataType = "int"),
 	})
 	@RequestMapping(value = "/getRolesByFunID", method = RequestMethod.GET)
 	public ResultBody getRolesByFunID(@RequestParam Long AppId, @RequestParam Long FunID){

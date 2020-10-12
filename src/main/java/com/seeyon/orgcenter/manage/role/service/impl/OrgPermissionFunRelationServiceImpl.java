@@ -123,11 +123,11 @@ public class OrgPermissionFunRelationServiceImpl extends ServiceImpl<OrgPermissi
 	 */
 	@Override
 	public ResultBody cancelRoleBindfunction(Long AppId,Long RoleID,List<Long> FunIDs){
-		QueryWrapper<OrgPermissionFunRelation> orgPermissionFunRelationQueryWrapper=new QueryWrapper<OrgPermissionFunRelation>();
+		LambdaQueryWrapper<OrgPermissionFunRelation> orgPermissionFunRelationQueryWrapper=new LambdaQueryWrapper<OrgPermissionFunRelation>();
 		orgPermissionFunRelationQueryWrapper.
-				eq("appId",AppId).
-				eq("roleId",RoleID)
-				.in("funId",FunIDs);
+				eq(OrgPermissionFunRelation::getAppId,AppId).
+				eq(OrgPermissionFunRelation::getRoleId,RoleID)
+				.in(OrgPermissionFunRelation::getFunId,FunIDs);
 		ResultBody resultBody=ResultBody.success(remove(orgPermissionFunRelationQueryWrapper));
 		resultBody.setMessage("删除成功");
 		return resultBody;
@@ -143,11 +143,11 @@ public class OrgPermissionFunRelationServiceImpl extends ServiceImpl<OrgPermissi
 	 */
 	@Override
 	public ResultBody cancelFunctionBindRole(Long AppId,Long FunID,List<Long> RoleIDs){
-		QueryWrapper<OrgPermissionFunRelation> orgPermissionFunRelationQueryWrapper=new QueryWrapper<OrgPermissionFunRelation>();
+		LambdaQueryWrapper<OrgPermissionFunRelation> orgPermissionFunRelationQueryWrapper=new LambdaQueryWrapper<OrgPermissionFunRelation>();
 		orgPermissionFunRelationQueryWrapper.
-				eq("appId",AppId).
-				eq("funId",FunID)
-				.in("roleId",RoleIDs);
+				eq(OrgPermissionFunRelation::getAppId,AppId).
+				eq(OrgPermissionFunRelation::getFunId,FunID)
+				.in(OrgPermissionFunRelation::getRoleId,RoleIDs);
 		ResultBody resultBody=ResultBody.success(remove(orgPermissionFunRelationQueryWrapper));
 		resultBody.setMessage("删除成功");
 		return resultBody;
