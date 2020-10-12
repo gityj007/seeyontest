@@ -3,7 +3,7 @@
 <mapper namespace="com.seeyon.orgcenter.mapper.OrgPermissionFunRelationMapper">
 	<!--    查询账户byroleid-->
 	<select id="getFunctionByRoleID" resultType="com.seeyon.orgcenter.entity.OrgFunction">
-        select * from org_function of where of.id in
+        select * from org_function ofu where ofu.id in
         (select oar.fun_id  from org_permission_fun_relation oar where oar.app_id=#{AppId} and oar.role_id=#{RoleID})
 	</select>
 

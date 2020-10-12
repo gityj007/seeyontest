@@ -177,7 +177,7 @@ public class OrgPermissionFunRelationServiceImpl extends ServiceImpl<OrgPermissi
 	 */
 	@Override
 	public ResultBody getRolesByFunID(Integer AppId, Integer FunID) {
-		List<OrgFunction> orgFunction = getBaseMapper().getRolesByFunID(AppId, FunID);
+		List<OrgRole> orgFunction = getBaseMapper().getRolesByFunID(AppId, FunID);
 		ResultBody resultBody=ResultBody.success(orgFunction);
 		resultBody.setMessage("查询成功");
 		return resultBody;

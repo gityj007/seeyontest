@@ -35,6 +35,6 @@ public interface OrgPermissionFunRelationMapper extends BaseMapper<OrgPermission
 	 * @param FunID
 	 * @return
 	 */
-	List<OrgFunction> getRolesByFunID(@Param(value = "AppId") Integer AppId,@Param(value = "FunID") Integer FunID);
+	List<OrgRole> getRolesByFunID(@Param(value = "AppId") Integer AppId,@Param(value = "FunID") Integer FunID);
 
 }

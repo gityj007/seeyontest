@@ -1,9 +1,12 @@
 package com.seeyon.orgcenter.entity;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -45,10 +48,10 @@ public class OrgFunction implements Serializable {
     @TableField("PARENT_FUN_ID")
     private Integer parentFunId;
 
-    @TableField("CREATE_TIME")
+    @TableField(value = "CREATE_TIME",fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
-    @TableField("UPDATE_TIME")
+    @TableField(value = "UPDATE_TIME",fill = FieldFill.UPDATE)
     private LocalDateTime updateTime;
 
     @TableField("ICON")
@@ -76,6 +79,7 @@ public class OrgFunction implements Serializable {
     private Integer level;
 
     @TableField("IS_DELETED")
+    @TableLogic
     private Integer isDeleted;
 
 
