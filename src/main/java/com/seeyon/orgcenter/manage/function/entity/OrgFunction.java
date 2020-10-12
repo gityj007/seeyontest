@@ -1,12 +1,11 @@
 package com.seeyon.orgcenter.manage.function.entity;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
-import com.baomidou.mybatisplus.annotation.TableId;
-import java.time.LocalDateTime;
-import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.*;
 
-import com.baomidou.mybatisplus.annotation.TableLogic;
+import java.time.LocalDateTime;
+import java.io.Serializable;
+import java.util.Date;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -14,7 +13,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author yangjian
@@ -27,7 +26,7 @@ public class OrgFunction implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId("ID")
+    @TableId(value="ID",type = IdType.AUTO)
     private Integer id;
 
     @TableField("APP_ID")
@@ -49,10 +48,10 @@ public class OrgFunction implements Serializable {
     private Integer parentFunId;
 
     @TableField(value = "CREATE_TIME",fill = FieldFill.INSERT)
-    private LocalDateTime createTime;
+    private Date createTime;
 
     @TableField(value = "UPDATE_TIME",fill = FieldFill.UPDATE)
-    private LocalDateTime updateTime;
+    private Date updateTime;
 
     @TableField("ICON")
     private String icon;
