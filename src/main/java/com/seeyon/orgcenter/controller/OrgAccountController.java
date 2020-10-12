@@ -49,8 +49,8 @@ public class OrgAccountController {
     public ResultBody saveOrUpdateOrgAccount(@RequestBody OrgAccount orgAccount){
         //密码加密
         if(orgAccount.getId()==null){
-            String PassCode=orgAccountService.passEncryption("",orgAccount.getCredentialValue());
-            orgAccount.setCredentialValue(PassCode);
+            String passCode =orgAccountService.passEncryption("",orgAccount.getCredentialValue());
+            orgAccount.setCredentialValue(passCode );
         }
         ResultBody resultBody=ResultBody.success(orgAccountService.saveOrUpdate(orgAccount));
         resultBody.setMessage("更新成功");
@@ -61,10 +61,9 @@ public class OrgAccountController {
     @RequestMapping(value = "/saveOrgAccountBatch",method = RequestMethod.POST)
     public ResultBody insertOrgAccountBatch(@RequestBody List<OrgAccount> orgAccounts){
         //密码加密
-        orgAccounts.stream().map(orgAccount->{
-            String PassCode=orgAccountService.passEncryption("",orgAccount.getCredentialValue());
-            orgAccount.setCredentialValue(PassCode);
-            return orgAccount;
+        orgAccounts.stream().peek(orgAccount->{
+            String passCode =orgAccountService.passEncryption("",orgAccount.getCredentialValue());
+            orgAccount.setCredentialValue( passCode );
         }).collect(Collectors.toList());
 
 
@@ -75,7 +74,7 @@ public class OrgAccountController {
 
     @ApiOperation(value="删除账号byID", notes="删除账号byID", produces="application/json")
     @ApiImplicitParam(name = "id", value = "账号ID", paramType = "form", required = true, dataType = "long")
-    @RequestMapping(value = "/delOrgAccount",method = RequestMethod.POST)
+    @RequestMapping(value = "/delOrgAccountByID",method = RequestMethod.POST)
     public ResultBody delOrgAccountByID(@RequestParam Integer id){
         ResultBody resultBody=ResultBody.success(orgAccountService.removeById(id));
         resultBody.setMessage("删除成功");
