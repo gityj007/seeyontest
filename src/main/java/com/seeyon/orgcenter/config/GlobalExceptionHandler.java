@@ -10,6 +10,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ *	<p>
+ *  账号模块
+ *  </p>
+ * @author yangjian
+ * @since 2020-10-11
+ */
 @ControllerAdvice
 public class GlobalExceptionHandler {
 	private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);

@@ -33,7 +33,7 @@ public class Swagger2{
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Spring Boot中使用Swagger2构建RESTful APIs")
+                .title("账号角色权限模块API")
                 .version("1.0")
                 .build();
     }

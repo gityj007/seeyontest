@@ -6,6 +6,13 @@ import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
+/**
+ *  <p>
+ *      mybatis 配置默认值
+ *  </p>
+ *
+ * @author yangjian
+ */
 @Component
 public class MetaObjectHandlerConfig implements MetaObjectHandler {
 
