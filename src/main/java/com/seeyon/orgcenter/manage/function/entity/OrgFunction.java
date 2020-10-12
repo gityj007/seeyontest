@@ -45,7 +45,7 @@ public class OrgFunction implements Serializable {
     private Integer type;
 
     @TableField("PARENT_FUN_ID")
-    private Integer parentFunId;
+    private Long parentFunId;
 
     @TableField(value = "CREATE_TIME",fill = FieldFill.INSERT)
     private Date createTime;
