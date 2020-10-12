@@ -53,7 +53,7 @@ public class MpGenerator {
         GlobalConfig gc = new GlobalConfig();
         String projectPath = System.getProperty("user.dir");
         gc.setOutputDir(projectPath + "/src/main/java");
-        gc.setAuthor("yangjian");
+        gc.setAuthor("gouyu");
         gc.setOpen(false);
         // 实体属性 Swagger2 注解
         gc.setSwagger2(true);
@@ -64,12 +64,12 @@ public class MpGenerator {
         dsc.setUrl("jdbc:mysql:///seeyontest?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
-        dsc.setPassword("root123456");
+        dsc.setPassword("admin123456");
         mpg.setDataSource(dsc);
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setModuleName("模块名");
+        pc.setModuleName("tree");
         pc.setParent("com.seeyon.orgcenter.manage");
         mpg.setPackageInfo(pc);
 
@@ -143,7 +143,7 @@ public class MpGenerator {
 //        tables[2] = "org_permission_data_relation";
 //        tables[3] = "org_permission_fun_relation";
 //        tables[4] = "org_role";
-        tables[0] = "org_function";
+        tables[0] = "org_tree";
 
         strategy.setInclude(tables);
         strategy.setControllerMappingHyphenStyle(true);
