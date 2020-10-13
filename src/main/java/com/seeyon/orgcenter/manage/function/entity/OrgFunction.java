@@ -13,10 +13,10 @@ import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- *
+ *	菜单对象类
  * </p>
  *
- * @author yangjian
+ * @author gouyu
  * @since 2020-10-12
  */
 @Data

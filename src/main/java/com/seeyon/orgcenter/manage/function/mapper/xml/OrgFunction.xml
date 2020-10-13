@@ -1,5 +1,154 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.seeyon.orgcenter.manage.function.mapper.OrgFunctionMapper">
+<mapper namespace="OrgFunctionMapper">
+	<!--表名 -->
+	<sql id="tableName">
+		ORG_FUNCTION
+	</sql>
 
+	<!-- 字段 -->
+	<sql id="Field">
+		APP_ID,
+		NAME,
+		CODE,
+		URL,
+		TYPE,
+		PARENT_FUN_ID,
+		CREATE_TIME,
+		UPDATE_TIME,
+		ICON,
+		PATH,
+		IS_SHOW,
+		IS_CHECK,
+		IS_CONTROL,
+		SHORTCUT,
+		SHORTCUT_ICON,
+		LEVEL,
+		IS_DELETED,
+		ID
+	</sql>
+
+	<!-- 字段值 -->
+	<sql id="FieldValue">
+		#{appId},
+		#{name},
+		#{code},
+		#{url},
+		#{type},
+		#{parentFunId},
+		#{createTime},
+		#{updateTime},
+		#{icon},
+		#{path},
+		#{isShow},
+		#{isCheck},
+		#{isControl},
+		#{shortcut},
+		#{shortcutIcon},
+		#{level},
+		#{isDeleted},
+		#{id}
+	</sql>
+
+	<!-- 映射 -->
+	<resultMap id="orgFunctionMap" type="com.seeyon.orgcenter.manage.function.entity.OrgFunction" >
+		<id column="ID" property="id" jdbcType="BIGINT" />
+		<result column="APP_ID" property="appId" />
+		<result column="NAME" property="name" />
+		<result column="CODE" property="code" />
+		<result column="URL" property="url" />
+		<result column="TYPE" property="type" />
+		<result column="PARENT_FUN_ID" property="parentFunId" />
+		<result column="CREATE_TIME" property="createTime" />
+		<result column="UPDATE_TIME" property="updateTime" />
+		<result column="ICON" property="icon" />
+		<result column="PATH" property="path" />
+		<result column="IS_SHOW" property="isShow" />
+		<result column="IS_CHECK" property="isCheck" />
+		<result column="IS_CONTROL" property="isControl" />
+		<result column="SHORTCUT" property="shortcut" />
+		<result column="SHORTCUT_ICON" property="shortcutIcon" />
+		<result column="LEVEL" property="level" />
+		<result column="IS_DELETED" property="isDeleted" />
+	</resultMap>
+
+	<!-- 新增 -->
+	<insert id="save" parameterType="com.seeyon.orgcenter.manage.function.entity.OrgFunction">
+		insert into
+		<include refid="tableName"></include>
+		(
+		<include refid="Field"></include>
+		) values (
+		<include refid="FieldValue"></include>
+		)
+	</insert>
+
+	<!-- 通过ID获取数据 -->
+	<select id="findById" parameterType="java.lang.Long" resultType="com.seeyon.orgcenter.manage.function.entity.OrgFunction">
+		select
+		<include refid="Field"></include>
+		from
+		<include refid="tableName"></include>
+		where
+		ID = #{id}
+	</select>
+
+	<!-- 查询所有菜单 -->
+	<select id="findAll" resultType="com.seeyon.orgcenter.manage.function.entity.OrgFunction">
+		select
+		<include refid="Field"></include>
+		from
+		<include refid="tableName"></include>
+		where
+		IS_DELETED = 0
+	</select>
+
+	<!-- 删除菜单（单个） -->
+	<update id="delete" parameterType="java.lang.Long">
+		update
+		<include refid="tableName"></include>
+		set
+		IS_DELETED = 1
+		where
+		ID = #{id}
+	</update>
+
+	<!-- 修改 -->
+	<update id="edit" parameterType="com.seeyon.orgcenter.manage.function.entity.OrgFunction">
+		update
+		<include refid="tableName"></include>
+		set
+		APP_ID = #{appId},
+		NAME = #{name},
+		CODE = #{code},
+		URL = #{url},
+		TYPE = #{type},
+		PARENT_FUN_ID = #{parentFunId},
+		CREATE_TIME = #{createTime},
+		UPDATE_TIME = #{updateTime},
+		ICON = #{icon},
+		PATH = #{path},
+		IS_SHOW = #{isShow},
+		IS_CHECK = #{isCheck},
+		IS_CONTROL = #{isControl},
+		SHORTCUT = #{shortcut},
+		SHORTCUT_ICON = #{shortcutIcon},
+		LEVEL = #{level},
+		IS_DELETED = #{isDeleted}
+		where
+		ID = #{id}
+	</update>
+
+	<!-- 删除菜单（多个） -->
+	<update id="deleteAll" parameterType="java.util.List">
+		update
+		<include refid="tableName"></include>
+		set
+		IS_DELETED = 1
+		where
+		ID in
+		<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</update>
 </mapper>

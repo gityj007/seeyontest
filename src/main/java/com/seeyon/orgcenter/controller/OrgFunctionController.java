@@ -10,9 +10,11 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * <p>
- *  功能权限模块
+ *  菜单模块
  * </p>
  *
  * @author gouyu
@@ -20,42 +22,70 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/orgcenter/org-function")
-@Api("功能权限模块")
+@Api("菜单模块")
 public class OrgFunctionController {
 
 	@Autowired
 	private IOrgFunctionService orgFunctionService;
 
-	@ApiOperation(value="获取所有功能权限", notes="获取所有功能权限", produces="application/json")
+	@ApiOperation(value="获取所有菜单", notes="获取所有菜单all", produces="application/json")
 	@RequestMapping(value = "/getAllOrgFunction",method = RequestMethod.GET)
 	public ResultBody getAllOrgFunction(){
-		return ResultBody.success(orgFunctionService.list());
-	}
-
-
-	@ApiOperation(value="获取功能byID", notes="获取功能byID", produces="application/json")
-	@ApiImplicitParam(name = "id", value = "功能ID", paramType = "query", required = true, dataType = "long")
-	@RequestMapping(value = "/getOrgFunctionByID",method = RequestMethod.GET)
-	public ResultBody getOrgFunctionByID(@RequestParam Long id){
-		ResultBody resultBody = ResultBody.success(orgFunctionService.getById(id));
+		List<OrgFunction> list = orgFunctionService.getList();
+		ResultBody resultBody = ResultBody.success(list);
 		resultBody.setMsg("查询成功");
 		return resultBody;
 	}
 
 
-	@ApiOperation(value="添加或更新功能", notes="添加或更新功能", produces="application/json")
-	@RequestMapping(value = "/saveOrUpdateOrgFunction",method = RequestMethod.POST)
-	public ResultBody saveOrUpdateOrgFunction(@RequestBody OrgFunction orgFunction){
-		ResultBody resultBody=ResultBody.success(orgFunctionService.saveOrUpdate(orgFunction));
-		resultBody.setMsg("更新成功");
+	@ApiOperation(value="获取菜单", notes="获取菜单byID", produces="application/json")
+	@ApiImplicitParam(name = "id", value = "菜单ID", paramType = "query", required = true, dataType = "long")
+	@RequestMapping(value = "/getOrgFunctionByID",method = RequestMethod.GET)
+	public ResultBody getOrgFunctionByID(@RequestParam Long id){
+		//ResultBody resultBody = ResultBody.success(orgFunctionService.getById(id));
+		ResultBody resultBody = ResultBody.success(orgFunctionService.getFunctionEntity(id));
+		resultBody.setMsg("查询成功");
 		return resultBody;
 	}
 
-	@ApiOperation(value="删除功能byID", notes="删除功能byID", produces="application/json")
+
+	@ApiOperation(value="菜单的新增", notes="菜单的新增", produces="application/json")
+	@RequestMapping(value = "/saveOrUpdateToOrgFunction",method = RequestMethod.POST)
+	public ResultBody saveOrUpdate(@RequestBody OrgFunction orgFunction){
+		//ResultBody resultBody=ResultBody.success(orgFunctionService.saveOrUpdate(orgFunction));
+		if(orgFunction.getId() == null){
+			orgFunctionService.add(orgFunction);
+			ResultBody resultBody=ResultBody.success();
+			resultBody.setMsg("新增成功");
+			return resultBody;
+		}else{
+			orgFunctionService.updata(orgFunction);
+			ResultBody resultBody=ResultBody.success();
+			resultBody.setMsg("修改成功");
+			return resultBody;
+		}
+	}
+
+
+	@ApiOperation(value="删除菜单", notes="删除菜单byID", produces="application/json")
 	@ApiImplicitParam(name = "id", value = "功能ID", paramType = "form", required = true, dataType = "long")
 	@RequestMapping(value = "/delOrgFunction",method = RequestMethod.POST)
 	public ResultBody delOrgFunction(@RequestParam Long id){
-		ResultBody resultBody=ResultBody.success(orgFunctionService.removeById(id));
+		//ResultBody resultBody=ResultBody.success(orgFunctionService.removeById(id));
+		orgFunctionService.delete(id);
+		ResultBody resultBody=ResultBody.success();
+		resultBody.setMsg("删除成功");
+		return resultBody;
+	}
+
+
+	@ApiOperation(value="删除多个菜单", notes="删除多个菜单byID", produces="application/json")
+	@ApiImplicitParam(name = "ids", value = "菜单IDs", paramType = "form", required = true, dataType = "list")
+	@RequestMapping(value = "/delMoreOrgFunction",method = RequestMethod.POST)
+	public ResultBody delMoreOrgFunction(@RequestParam List<Long> ids){
+		//ResultBody resultBody=ResultBody.success(orgFunctionService.removeById(id));
+		orgFunctionService.deleteAll(ids);
+		ResultBody resultBody=ResultBody.success();
 		resultBody.setMsg("删除成功");
 		return resultBody;
 	}

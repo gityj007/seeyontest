@@ -15,4 +15,12 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface OrgFunctionMapper extends BaseMapper<OrgFunction> {
 
+	/**
+	 *菜单的新增
+	 */
+	void add(OrgFunction orgFunction);
+	/**
+	 *通过id查询菜单
+	 */
+	public OrgFunction findById(Long id);
 }
