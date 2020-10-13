@@ -4,12 +4,12 @@
 	<!--    查询角色权限    -->
 	<select id="getOrgTreeByRoleID" resultType="com.seeyon.orgcenter.manage.tree.entity.OrgTree">
         select * from org_tree ot where ot.id in
-        (select oar.fun_id  from org_permission_data_relation oar where oar.app_id=#{AppId} and oar.role_id=#{RoleID})
+        (select oar.role_id  from org_permission_data_relation oar where oar.app_id=#{AppId} and oar.role_id=#{RoleID})
 	</select>
 
 	<!--    查询权限所属角色   -->
 	<select id="getRoleByOrgTree" resultType="com.seeyon.orgcenter.manage.role.entity.OrgRole">
          select * from org_role oro where oro.id in
-                (select oar.role_id  from org_permission_data_relation oar where oar.app_id=#{AppId} and oar.fun_id=#{OrgdID})
+                (select oar.role_id  from org_permission_data_relation oar where oar.app_id=#{AppId} and oar.org_id=#{OrgID})
     </select>
 </mapper>

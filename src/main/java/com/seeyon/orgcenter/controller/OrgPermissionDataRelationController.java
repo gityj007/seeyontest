@@ -99,7 +99,7 @@ public class OrgPermissionDataRelationController {
 	}
 
 
-	@ApiOperation(value = "通过角色获取权限信息", notes = "通过角色获取权限信息", produces = "application/json")
+	@ApiOperation(value = "通过权限获取角色信息", notes = "通过权限获取角色信息", produces = "application/json")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "AppId", value = "应用ID", paramType = "query", required = true, dataType = "int"),
 			@ApiImplicitParam(name = "OrgID", value = "权限ID", paramType = "query", required = true, dataType = "int"),
