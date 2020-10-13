@@ -137,7 +137,7 @@ public class OrgPermissionDataRelationServiceImpl extends ServiceImpl<OrgPermiss
 				eq(OrgPermissionDataRelation::getRoleId,RoleID)
 				.in(OrgPermissionDataRelation::getOrgId,OrgIDs);
 		ResultBody resultBody=ResultBody.success(remove(orgPermissionDataRelationQueryWrapper));
-		resultBody.setMessage("删除成功");
+		resultBody.setMsg("删除成功");
 		return resultBody;
 	}
 
@@ -157,7 +157,7 @@ public class OrgPermissionDataRelationServiceImpl extends ServiceImpl<OrgPermiss
 				eq(OrgPermissionDataRelation::getOrgId,OrgID)
 				.in(OrgPermissionDataRelation::getRoleId,RoleIDs);
 		ResultBody resultBody=ResultBody.success(remove(orgPermissionDataRelationQueryWrapper));
-		resultBody.setMessage("删除成功");
+		resultBody.setMsg("删除成功");
 		return resultBody;
 	}
 
@@ -171,7 +171,7 @@ public class OrgPermissionDataRelationServiceImpl extends ServiceImpl<OrgPermiss
 	public ResultBody getOrgTreeByRoleID(Long AppId,Long RoleID){
 		List<OrgTree> orgTree = getBaseMapper().getOrgTreeByRoleID(AppId, RoleID);
 		ResultBody resultBody=ResultBody.success(orgTree);
-		resultBody.setMessage("查询成功");
+		resultBody.setMsg("查询成功");
 		return resultBody;
 	}
 
@@ -185,7 +185,7 @@ public class OrgPermissionDataRelationServiceImpl extends ServiceImpl<OrgPermiss
 	public ResultBody getRoleByOrgTree(Long AppId,Long OrgID){
 		List<OrgRole> orgRole = getBaseMapper().getRoleByOrgTree(AppId, OrgID);
 		ResultBody resultBody=ResultBody.success(orgRole);
-		resultBody.setMessage("查询成功");
+		resultBody.setMsg("查询成功");
 		return resultBody;
 	}
 }
