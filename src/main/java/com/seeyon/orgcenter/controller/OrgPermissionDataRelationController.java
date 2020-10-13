@@ -60,4 +60,53 @@ public class OrgPermissionDataRelationController {
 		ResultBody resultBody = orgPermissionDataRelationService.orgTreeBindRole(AppId,name,IsAvailableChild,OrgID, RoleIDs);
 		return resultBody;
 	}
+
+
+	@ApiOperation(value = "通过角色解除绑定数据权限", notes = "通过角色解除绑定数据权限", produces = "application/json")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "AppId", value = "应用ID", paramType = "form", required = true, dataType = "int"),
+			@ApiImplicitParam(name = "RoleID", value = "角色ID", paramType = "form", required = true, dataType = "int"),
+			@ApiImplicitParam(name = "OrgIDs", value = "数据IDs", paramType = "form", required = true, dataType = "list")
+	})
+	@RequestMapping(value = "/cancelRoleBindOrgTree", method = RequestMethod.POST)
+	public ResultBody cancelRoleBindOrgTree(@RequestParam Long AppId, @RequestParam Long RoleID, @RequestParam List<Long> OrgIDs) {
+		ResultBody resultBody = orgPermissionDataRelationService.cancelRoleBindOrgTree(AppId, RoleID, OrgIDs);
+		return resultBody;
+	}
+
+	@ApiOperation(value = "通过数据权限解除绑定角色", notes = "通过数据权限解除绑定角色", produces = "application/json")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "AppId", value = "应用ID", paramType = "form", required = true, dataType = "int"),
+			@ApiImplicitParam(name = "OrgID", value = "数据权限ID", paramType = "form", required = true, dataType = "int"),
+			@ApiImplicitParam(name = "RoleIDs", value = "角色IDs", paramType = "form", required = true, dataType = "list")
+	})
+	@RequestMapping(value = "/cancelOrgTreeBindRole", method = RequestMethod.POST)
+	public ResultBody cancelOrgTreeBindRole(@RequestParam Long AppId, @RequestParam Long OrgID, @RequestParam List<Long> RoleIDs) {
+		ResultBody resultBody = orgPermissionDataRelationService.cancelOrgTreeBindRole(AppId, OrgID, RoleIDs);
+		return resultBody;
+	}
+
+
+	@ApiOperation(value = "通过角色获取权限信息", notes = "通过角色获取权限信息", produces = "application/json")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "AppId", value = "应用ID", paramType = "query", required = true, dataType = "int"),
+			@ApiImplicitParam(name = "RoleID", value = "角色ID", paramType = "query", required = true, dataType = "int"),
+	})
+	@RequestMapping(value = "/getOrgTreeByRoleID", method = RequestMethod.GET)
+	public ResultBody getOrgTreeByRoleID(@RequestParam Long AppId, @RequestParam Long RoleID) {
+		ResultBody resultBody = orgPermissionDataRelationService.getOrgTreeByRoleID(AppId, RoleID);
+		return resultBody;
+	}
+
+
+	@ApiOperation(value = "通过角色获取权限信息", notes = "通过角色获取权限信息", produces = "application/json")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "AppId", value = "应用ID", paramType = "query", required = true, dataType = "int"),
+			@ApiImplicitParam(name = "OrgID", value = "权限ID", paramType = "query", required = true, dataType = "int"),
+	})
+	@RequestMapping(value = "/getRoleByOrgTree", method = RequestMethod.GET)
+	public ResultBody getRoleByOrgTree(@RequestParam Long AppId, @RequestParam Long OrgID) {
+		ResultBody resultBody = orgPermissionDataRelationService.getRoleByOrgTree(AppId, OrgID);
+		return resultBody;
+	}
 }

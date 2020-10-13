@@ -35,4 +35,34 @@ public interface IOrgPermissionDataRelationService extends IService<OrgPermissio
 	 * @return
 	 */
 	ResultBody orgTreeBindRole(Long AppId,String name,int IsAvailableChild,Long OrgID,List<Long> RoleIDs);
+	/**
+	 * 根据角色解除绑定数据权限
+	 * @param AppId
+	 * @param RoleID
+	 * @param OrgIDs
+	 * @return
+	 */
+	ResultBody cancelRoleBindOrgTree(Long AppId,Long RoleID,List<Long> OrgIDs);
+	/**
+	 * 根据角色解除绑定数据权限
+	 * @param AppId
+	 * @param OrgID
+	 * @param RoleIDs
+	 * @return
+	 */
+	ResultBody cancelOrgTreeBindRole(Long AppId,Long OrgID,List<Long> RoleIDs);
+	/**
+	 * 根据角色获取数据权限
+	 * @param AppId
+	 * @param RoleID
+	 * @return
+	 */
+	ResultBody getOrgTreeByRoleID(Long AppId,Long RoleID);
+	/**
+	 * 根据权限获取角色信息
+	 * @param AppId
+	 * @param OrgID
+	 * @return
+	 */
+	ResultBody getRoleByOrgTree(Long AppId,Long OrgID);
 }

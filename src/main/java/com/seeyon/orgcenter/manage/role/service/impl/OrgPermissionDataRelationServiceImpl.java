@@ -2,11 +2,14 @@ package com.seeyon.orgcenter.manage.role.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.seeyon.orgcenter.common.ResultBody;
+import com.seeyon.orgcenter.manage.function.entity.OrgFunction;
 import com.seeyon.orgcenter.manage.role.entity.OrgPermissionDataRelation;
 import com.seeyon.orgcenter.manage.role.entity.OrgPermissionFunRelation;
+import com.seeyon.orgcenter.manage.role.entity.OrgRole;
 import com.seeyon.orgcenter.manage.role.mapper.OrgPermissionDataRelationMapper;
 import com.seeyon.orgcenter.manage.role.service.IOrgPermissionDataRelationService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.seeyon.orgcenter.manage.tree.entity.OrgTree;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -117,5 +120,72 @@ public class OrgPermissionDataRelationServiceImpl extends ServiceImpl<OrgPermiss
 			return orgPermissionDataRelation;
 		}).collect(Collectors.toList());
 		return ResultBody.success(saveBatch(orgPermissionDataRelations));
+	}
+
+	/**
+	 * 根据角色解除绑定数据权限
+	 * @param AppId
+	 * @param RoleID
+	 * @param OrgIDs
+	 * @return
+	 */
+	@Override
+	public ResultBody cancelRoleBindOrgTree(Long AppId,Long RoleID,List<Long> OrgIDs){
+		LambdaQueryWrapper<OrgPermissionDataRelation> orgPermissionDataRelationQueryWrapper=new LambdaQueryWrapper<OrgPermissionDataRelation>();
+		orgPermissionDataRelationQueryWrapper.
+				eq(OrgPermissionDataRelation::getAppId,AppId).
+				eq(OrgPermissionDataRelation::getRoleId,RoleID)
+				.in(OrgPermissionDataRelation::getOrgId,OrgIDs);
+		ResultBody resultBody=ResultBody.success(remove(orgPermissionDataRelationQueryWrapper));
+		resultBody.setMessage("删除成功");
+		return resultBody;
+	}
+
+
+	/**
+	 * 根据角色解除绑定数据权限
+	 * @param AppId
+	 * @param OrgID
+	 * @param RoleIDs
+	 * @return
+	 */
+	@Override
+	public ResultBody cancelOrgTreeBindRole(Long AppId,Long OrgID,List<Long> RoleIDs){
+		LambdaQueryWrapper<OrgPermissionDataRelation> orgPermissionDataRelationQueryWrapper=new LambdaQueryWrapper<OrgPermissionDataRelation>();
+		orgPermissionDataRelationQueryWrapper.
+				eq(OrgPermissionDataRelation::getAppId,AppId).
+				eq(OrgPermissionDataRelation::getOrgId,OrgID)
+				.in(OrgPermissionDataRelation::getRoleId,RoleIDs);
+		ResultBody resultBody=ResultBody.success(remove(orgPermissionDataRelationQueryWrapper));
+		resultBody.setMessage("删除成功");
+		return resultBody;
+	}
+
+	/**
+	 * 根据角色获取数据权限
+	 * @param AppId
+	 * @param RoleID
+	 * @return
+	 */
+	@Override
+	public ResultBody getOrgTreeByRoleID(Long AppId,Long RoleID){
+		List<OrgTree> orgTree = getBaseMapper().getOrgTreeByRoleID(AppId, RoleID);
+		ResultBody resultBody=ResultBody.success(orgTree);
+		resultBody.setMessage("查询成功");
+		return resultBody;
+	}
+
+	/**
+	 * 根据权限获取角色信息
+	 * @param AppId
+	 * @param OrgID
+	 * @return
+	 */
+	@Override
+	public ResultBody getRoleByOrgTree(Long AppId,Long OrgID){
+		List<OrgRole> orgRole = getBaseMapper().getRoleByOrgTree(AppId, OrgID);
+		ResultBody resultBody=ResultBody.success(orgRole);
+		resultBody.setMessage("查询成功");
+		return resultBody;
 	}
 }
