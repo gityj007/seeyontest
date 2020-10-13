@@ -17,10 +17,10 @@ import java.util.List;
 
 /**
  * <p>
- *  角色权限模块
+ *  角色菜单模块
  * </p>
  *
- * @author yangjian
+ * @author gouyu
  * @since 2020-10-11
  */
 @RestController
@@ -29,7 +29,7 @@ public class OrgPermissionFunRelationController {
 	@Autowired
 	private IOrgPermissionFunRelationService orgPermissionFunRelationService;
 
-	@ApiOperation(value="角色绑定功能权限byID", notes="角色绑定功能权限byID", produces="application/json")
+	@ApiOperation(value="角色绑定菜单byID", notes="角色绑定菜单byID", produces="application/json")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "RoleId", value = "角色ID", paramType = "form", required = true, dataType = "int"),
 			@ApiImplicitParam(name = "AppId", value = "应用ID", paramType = "form", required = true, dataType = "int"),
@@ -42,7 +42,7 @@ public class OrgPermissionFunRelationController {
 		return resultBody;
 	}
 
-	@ApiOperation(value = "功能权限绑定角色", notes = "功能权限绑定角色", produces = "application/json")
+	@ApiOperation(value = "菜单绑定角色", notes = "菜单绑定角色", produces = "application/json")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "AppId", value = "应用ID", paramType = "form", required = true, dataType = "int"),
 			@ApiImplicitParam(name = "funID", value = "功能ID", paramType = "form", required = true, dataType = "int"),
@@ -56,7 +56,7 @@ public class OrgPermissionFunRelationController {
 	}
 
 
-	@ApiOperation(value = "通过角色解除绑定功能权限", notes = "通过角色解除绑定功能权限", produces = "application/json")
+	@ApiOperation(value = "通过角色解除绑定菜单", notes = "通过角色解除绑定菜单", produces = "application/json")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "AppId", value = "应用ID", paramType = "form", required = true, dataType = "int"),
 			@ApiImplicitParam(name = "RoleID", value = "角色ID", paramType = "form", required = true, dataType = "int"),
@@ -69,7 +69,7 @@ public class OrgPermissionFunRelationController {
 	}
 
 
-	@ApiOperation(value = "通过功能权限解除绑定角色", notes = "通过功能权限解除绑定角色", produces = "application/json")
+	@ApiOperation(value = "通过菜单解除绑定角色", notes = "通过菜单解除绑定角色", produces = "application/json")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "AppId", value = "应用ID", paramType = "form", required = true, dataType = "int"),
 			@ApiImplicitParam(name = "FunID", value = "功能ID", paramType = "form", required = true, dataType = "int"),
@@ -81,7 +81,7 @@ public class OrgPermissionFunRelationController {
 		return resultBody;
 	}
 
-	@ApiOperation(value = "通过角色得到功能信息", notes = "通过角色得到功能信息", produces = "application/json")
+	@ApiOperation(value = "通过角色得到菜单信息", notes = "通过角色得到菜单信息", produces = "application/json")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "AppId", value = "应用ID", paramType = "query", required = true, dataType = "int"),
 			@ApiImplicitParam(name = "RoleID", value = "角色ID", paramType = "query", required = true, dataType = "int"),
@@ -92,7 +92,7 @@ public class OrgPermissionFunRelationController {
 		return resultBody;
 	}
 
-	@ApiOperation(value = "通过功能得到角色信息", notes = "通过功能得到角色信息", produces = "application/json")
+	@ApiOperation(value = "通过菜单得到角色信息", notes = "通过菜单得到角色信息", produces = "application/json")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "AppId", value = "应用ID", paramType = "query", required = true, dataType = "int"),
 			@ApiImplicitParam(name = "FunID", value = "功能ID", paramType = "query", required = true, dataType = "int"),
