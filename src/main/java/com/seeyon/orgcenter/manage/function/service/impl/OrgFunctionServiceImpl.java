@@ -33,7 +33,7 @@ public class OrgFunctionServiceImpl extends ServiceImpl<OrgFunctionMapper, OrgFu
 	}
 
 	/**
-	 *获取菜单
+	 *根据ID获取菜单
 	 */
 	@Override
 	public OrgFunction getFunctionEntity(Long id){
