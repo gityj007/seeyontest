@@ -3,7 +3,7 @@ package com.seeyon.orgcenter.common.baseservice;
 
 import java.util.List;
 
-public interface BaseService< T> {
+public interface BaseService<T> {
 // 通过实体类进行插入数据库
 int insert(T record);
 // 根据主键进行删除数据
