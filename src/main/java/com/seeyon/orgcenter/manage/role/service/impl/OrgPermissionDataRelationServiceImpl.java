@@ -61,7 +61,7 @@ public class OrgPermissionDataRelationServiceImpl extends BaseServiceImpl<OrgPer
 		/**
 		 * 组装保存数据
 		 */
-		/*List<OrgPermissionDataRelation> orgPermissionDataRelations=OrgIDs.stream().map(orgId->{
+		List<OrgPermissionDataRelation> orgPermissionDataRelations=OrgIDs.stream().map(orgId->{
 			OrgPermissionDataRelation orgPermissionDataRelation=new OrgPermissionDataRelation();
 			orgPermissionDataRelation.setOrgId(orgId);
 			orgPermissionDataRelation.setIsAvailableChild(IsAvailableChild);
@@ -70,8 +70,7 @@ public class OrgPermissionDataRelationServiceImpl extends BaseServiceImpl<OrgPer
 			orgPermissionDataRelation.setName(name);
 			return orgPermissionDataRelation;
 		}).collect(Collectors.toList());
-		return ResultBody.success(saveBatch(orgPermissionDataRelations));*/
-		return null;
+		return ResultBody.success(insertBatch(orgPermissionDataRelations));
 	}
 
 	/**
@@ -110,7 +109,7 @@ public class OrgPermissionDataRelationServiceImpl extends BaseServiceImpl<OrgPer
 		/**
 		 * 组装保存数据
 		 */
-		/*List<OrgPermissionDataRelation> orgPermissionDataRelations=RoleIDs.stream().map(roleId->{
+		List<OrgPermissionDataRelation> orgPermissionDataRelations=RoleIDs.stream().map(roleId->{
 			OrgPermissionDataRelation orgPermissionDataRelation=new OrgPermissionDataRelation();
 			orgPermissionDataRelation.setOrgId(OrgID);
 			orgPermissionDataRelation.setIsAvailableChild(IsAvailableChild);
@@ -119,8 +118,7 @@ public class OrgPermissionDataRelationServiceImpl extends BaseServiceImpl<OrgPer
 			orgPermissionDataRelation.setName(name);
 			return orgPermissionDataRelation;
 		}).collect(Collectors.toList());
-		return ResultBody.success(saveBatch(orgPermissionDataRelations));*/
-		return null;
+		return ResultBody.success(insertBatch(orgPermissionDataRelations));
 	}
 
 	/**
@@ -170,10 +168,10 @@ public class OrgPermissionDataRelationServiceImpl extends BaseServiceImpl<OrgPer
 	 */
 	@Override
 	public ResultBody getOrgTreeByRoleID(Long AppId,Long RoleID){
-		/*List<OrgTree> orgTree = getBaseMapper().getOrgTreeByRoleID(AppId, RoleID);
+		List<OrgTree> orgTree = getMapper().getOrgTreeByRoleID(AppId, RoleID);
 		ResultBody resultBody=ResultBody.success(orgTree);
-		resultBody.setMsg("查询成功");*/
-		return null;
+		resultBody.setMsg("查询成功");
+		return resultBody;
 	}
 
 	/**
@@ -184,9 +182,9 @@ public class OrgPermissionDataRelationServiceImpl extends BaseServiceImpl<OrgPer
 	 */
 	@Override
 	public ResultBody getRoleByOrgTree(Long AppId,Long OrgID){
-		/*List<OrgRole> orgRole = getBaseMapper().getRoleByOrgTree(AppId, OrgID);
+		List<OrgRole> orgRole = getMapper().getRoleByOrgTree(AppId, OrgID);
 		ResultBody resultBody=ResultBody.success(orgRole);
-		resultBody.setMsg("查询成功");*/
-		return null;
+		resultBody.setMsg("查询成功");
+		return resultBody;
 	}
 }

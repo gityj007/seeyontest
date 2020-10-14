@@ -29,7 +29,7 @@ public class OrgPermissionFunRelationController {
 	@Autowired
 	private IOrgPermissionFunRelationService orgPermissionFunRelationService;
 
-	@ApiOperation(value="角色绑定菜单byID", notes="角色绑定菜单byID", produces="application/json")
+	@ApiOperation(value="角色绑定菜单", notes="角色绑定菜单byID", produces="application/json")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "RoleId", value = "角色ID", paramType = "form", required = true, dataType = "int"),
 			@ApiImplicitParam(name = "AppId", value = "应用ID", paramType = "form", required = true, dataType = "int"),

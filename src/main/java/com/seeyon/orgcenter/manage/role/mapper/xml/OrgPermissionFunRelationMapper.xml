@@ -151,4 +151,16 @@
 			</if>
 		</where>
 	</select>
+
+	<!--查询菜单by角色-->
+	<select id="getFunctionByRoleID" resultType="com.seeyon.orgcenter.manage.function.entity.OrgFunction">
+        select * from org_function ot where ot.id exists
+        (select oar.fun_id  from org_permission_fun_relation oar where oar.app_id=#{AppId} and oar.role_id=#{RoleID})
+	</select>
+
+	<!--查询角色by菜单-->
+	<select id="getRolesByFunID" resultType="com.seeyon.orgcenter.manage.role.entity.OrgRole">
+         select * from org_role oro where oro.id exists
+                (select oar.role_id  from org_permission_fun_relation oar where oar.app_id=#{AppId} and oar.fun_id=#{FunID})
+    </select>
 </mapper>

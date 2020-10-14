@@ -58,7 +58,7 @@ public class OrgPermissionFunRelationServiceImpl extends BaseServiceImpl<OrgPerm
 		/**
 		 * 组装保存数据
 		 */
-		/*List<OrgPermissionFunRelation> orgPermissionFunRelations=funIDs.stream().map(funId->{
+		List<OrgPermissionFunRelation> orgPermissionFunRelations=funIDs.stream().map(funId->{
 			OrgPermissionFunRelation orgPermissionFunRelation=new OrgPermissionFunRelation();
 			orgPermissionFunRelation.setFunId(funId);
 			orgPermissionFunRelation.setRoleId(RoleId);
@@ -66,8 +66,7 @@ public class OrgPermissionFunRelationServiceImpl extends BaseServiceImpl<OrgPerm
 			orgPermissionFunRelation.setName(name);
 			return orgPermissionFunRelation;
 		}).collect(Collectors.toList());
-		return ResultBody.success(saveBatch(orgPermissionFunRelations));*/
-		return null;
+		return ResultBody.success(insertBatch(orgPermissionFunRelations));
 	}
 
 	/**
@@ -103,7 +102,7 @@ public class OrgPermissionFunRelationServiceImpl extends BaseServiceImpl<OrgPerm
 		/**
 		 * 组装保存数据
 		 */
-		/*List<OrgPermissionFunRelation> orgPermissionFunRelations=RoleIDs.stream().map(roleID->{
+		List<OrgPermissionFunRelation> orgPermissionFunRelations=RoleIDs.stream().map(roleID->{
 			OrgPermissionFunRelation orgPermissionFunRelation=new OrgPermissionFunRelation();
 			orgPermissionFunRelation.setFunId(funID);
 			orgPermissionFunRelation.setRoleId(roleID);
@@ -111,8 +110,7 @@ public class OrgPermissionFunRelationServiceImpl extends BaseServiceImpl<OrgPerm
 			orgPermissionFunRelation.setName(name);
 			return orgPermissionFunRelation;
 		}).collect(Collectors.toList());
-		return ResultBody.success(saveBatch(orgPermissionFunRelations));*/
-		return null;
+		return ResultBody.success(insertBatch(orgPermissionFunRelations));
 	}
 
 	/**
@@ -163,10 +161,10 @@ public class OrgPermissionFunRelationServiceImpl extends BaseServiceImpl<OrgPerm
 	 */
 	@Override
 	public ResultBody getFunctionByRoleID(Long AppId,Long RoleID){
-		/*List<OrgFunction> orgFunction = getBaseMapper().getFunctionByRoleID(AppId, RoleID);
+		List<OrgFunction> orgFunction = getMapper().getFunctionByRoleID(AppId, RoleID);
 		ResultBody resultBody=ResultBody.success(orgFunction);
-		resultBody.setMsg("查询成功");*/
-		return null;
+		resultBody.setMsg("查询成功");
+		return resultBody;
 	}
 
 	/**
@@ -178,10 +176,10 @@ public class OrgPermissionFunRelationServiceImpl extends BaseServiceImpl<OrgPerm
 	 */
 	@Override
 	public ResultBody getRolesByFunID(Long AppId, Long FunID) {
-		/*List<OrgRole> orgFunction = getBaseMapper().getRolesByFunID(AppId, FunID);
+		List<OrgRole> orgFunction = getMapper().getRolesByFunID(AppId, FunID);
 		ResultBody resultBody=ResultBody.success(orgFunction);
-		resultBody.setMsg("查询成功");*/
-		return null;
+		resultBody.setMsg("查询成功");
+		return resultBody;
 	}
 
 }

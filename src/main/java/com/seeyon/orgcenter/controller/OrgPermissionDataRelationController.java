@@ -18,7 +18,7 @@ import java.util.List;
 
 /**
  * <p>
- *  角色数据权限
+ *  角色组织权限
  * </p>
  *
  * @author gouyu
@@ -26,13 +26,13 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/orgcenter/org-permission-data-relation")
-@Api(value = "角色数据权限模块")
+@Api(value = "角色组织权限")
 public class OrgPermissionDataRelationController {
 	@Autowired
 	private IOrgPermissionDataRelationService orgPermissionDataRelationService;
 
 
-	@ApiOperation(value = "角色分配数据权限", notes = "角色分配数据权限", produces = "application/json")
+	@ApiOperation(value = "角色绑定组织", notes = "角色绑定组织", produces = "application/json")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "AppId", value = "应用ID", paramType = "form", required = true, dataType = "int"),
 			@ApiImplicitParam(name = "name", value = "权限名称", paramType = "form", required = true, dataType = "String"),
@@ -47,7 +47,7 @@ public class OrgPermissionDataRelationController {
 	}
 
 
-	@ApiOperation(value = "数据权限绑定角色", notes = "数据权限绑定角色", produces = "application/json")
+	@ApiOperation(value = "组织绑定角色", notes = "组织绑定角色", produces = "application/json")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "AppId", value = "应用ID", paramType = "form", required = true, dataType = "int"),
 			@ApiImplicitParam(name = "name", value = "权限名称", paramType = "form", required = true, dataType = "String"),
@@ -62,7 +62,7 @@ public class OrgPermissionDataRelationController {
 	}
 
 
-	@ApiOperation(value = "通过角色解除绑定数据权限", notes = "通过角色解除绑定数据权限", produces = "application/json")
+	@ApiOperation(value = "通过角色解除绑定组织", notes = "通过角色解除绑定组织", produces = "application/json")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "AppId", value = "应用ID", paramType = "form", required = true, dataType = "int"),
 			@ApiImplicitParam(name = "RoleID", value = "角色ID", paramType = "form", required = true, dataType = "int"),
@@ -74,7 +74,7 @@ public class OrgPermissionDataRelationController {
 		return resultBody;
 	}
 
-	@ApiOperation(value = "通过数据权限解除绑定角色", notes = "通过数据权限解除绑定角色", produces = "application/json")
+	@ApiOperation(value = "通过组织解除绑定角色", notes = "通过组织解除绑定角色", produces = "application/json")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "AppId", value = "应用ID", paramType = "form", required = true, dataType = "int"),
 			@ApiImplicitParam(name = "OrgID", value = "数据权限ID", paramType = "form", required = true, dataType = "int"),
@@ -87,7 +87,7 @@ public class OrgPermissionDataRelationController {
 	}
 
 
-	@ApiOperation(value = "通过角色获取权限信息", notes = "通过角色获取权限信息", produces = "application/json")
+	@ApiOperation(value = "通过角色获取组织信息", notes = "通过角色获取组织信息", produces = "application/json")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "AppId", value = "应用ID", paramType = "query", required = true, dataType = "int"),
 			@ApiImplicitParam(name = "RoleID", value = "角色ID", paramType = "query", required = true, dataType = "int"),
@@ -99,7 +99,7 @@ public class OrgPermissionDataRelationController {
 	}
 
 
-	@ApiOperation(value = "通过权限获取角色信息", notes = "通过权限获取角色信息", produces = "application/json")
+	@ApiOperation(value = "通过组织获取角色信息", notes = "通过组织获取角色信息", produces = "application/json")
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "AppId", value = "应用ID", paramType = "query", required = true, dataType = "int"),
 			@ApiImplicitParam(name = "OrgID", value = "权限ID", paramType = "query", required = true, dataType = "int"),
