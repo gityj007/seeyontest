@@ -31,7 +31,7 @@ public class OrgFunctionController {
 	@ApiOperation(value="获取所有菜单", notes="获取所有菜单all", produces="application/json")
 	@RequestMapping(value = "/getAllOrgFunction",method = RequestMethod.GET)
 	public ResultBody getAllOrgFunction(){
-		List<OrgFunction> list = orgFunctionService.getList();
+		List<OrgFunction> list = orgFunctionService.selectByPrimarySelective(null);
 		ResultBody resultBody = ResultBody.success(list);
 		resultBody.setMsg("查询成功");
 		return resultBody;
@@ -43,7 +43,7 @@ public class OrgFunctionController {
 	@RequestMapping(value = "/getOrgFunctionByID",method = RequestMethod.GET)
 	public ResultBody getOrgFunctionByID(@RequestParam Long id){
 		//ResultBody resultBody = ResultBody.success(orgFunctionService.getById(id));
-		ResultBody resultBody = ResultBody.success(orgFunctionService.getFunctionEntity(id));
+		ResultBody resultBody = ResultBody.success(orgFunctionService.selectByPrimaryKey(id));
 		resultBody.setMsg("查询成功");
 		return resultBody;
 	}
@@ -54,12 +54,12 @@ public class OrgFunctionController {
 	public ResultBody saveOrUpdate(@RequestBody OrgFunction orgFunction){
 		//ResultBody resultBody=ResultBody.success(orgFunctionService.saveOrUpdate(orgFunction));
 		if(orgFunction.getId() == null){
-			orgFunctionService.add(orgFunction);
+			orgFunctionService.insert(orgFunction);
 			ResultBody resultBody=ResultBody.success();
 			resultBody.setMsg("新增成功");
 			return resultBody;
 		}else{
-			orgFunctionService.updata(orgFunction);
+			orgFunctionService.updateByPrimaryKeySelective(orgFunction);
 			ResultBody resultBody=ResultBody.success();
 			resultBody.setMsg("修改成功");
 			return resultBody;
@@ -72,7 +72,7 @@ public class OrgFunctionController {
 	@RequestMapping(value = "/delOrgFunction",method = RequestMethod.POST)
 	public ResultBody delOrgFunction(@RequestParam Long id){
 		//ResultBody resultBody=ResultBody.success(orgFunctionService.removeById(id));
-		orgFunctionService.delete(id);
+		orgFunctionService.deleteByPrimaryKey(id);
 		ResultBody resultBody=ResultBody.success();
 		resultBody.setMsg("删除成功");
 		return resultBody;
@@ -84,7 +84,7 @@ public class OrgFunctionController {
 	@RequestMapping(value = "/delMoreOrgFunction",method = RequestMethod.POST)
 	public ResultBody delMoreOrgFunction(@RequestParam List<Long> ids){
 		//ResultBody resultBody=ResultBody.success(orgFunctionService.removeById(id));
-		orgFunctionService.deleteAll(ids);
+		//orgFunctionService.deleteAll(ids);
 		ResultBody resultBody=ResultBody.success();
 		resultBody.setMsg("删除成功");
 		return resultBody;
