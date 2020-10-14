@@ -37,7 +37,7 @@ public class OrgAccountController {
 	@ApiImplicitParam(name = "id", value = "账号ID", paramType = "query", required = true, dataType = "long")
 	@RequestMapping(value = "/getOrgAccountByID",method = RequestMethod.GET)
 	public ResultBody getOrgAccountByID(@RequestParam Long id){
-		ResultBody resultBody = ResultBody.success(orgAccountService.getById(id));
+		ResultBody resultBody = ResultBody.success(orgAccountService.selectByPrimaryKey(id));
 		resultBody.setMsg("查询成功");
 		return resultBody;
 	}
@@ -76,7 +76,7 @@ public class OrgAccountController {
 	@ApiImplicitParam(name = "id", value = "账号ID", paramType = "form", required = true, dataType = "long")
 	@RequestMapping(value = "/delOrgAccountByID",method = RequestMethod.POST)
 	public ResultBody delOrgAccountByID(@RequestParam Long id){
-		ResultBody resultBody=ResultBody.success(orgAccountService.delID(id));
+		ResultBody resultBody=ResultBody.success(orgAccountService.deleteByPrimaryKey(id));
 		resultBody.setMsg("删除成功");
 		return resultBody;
 	}
