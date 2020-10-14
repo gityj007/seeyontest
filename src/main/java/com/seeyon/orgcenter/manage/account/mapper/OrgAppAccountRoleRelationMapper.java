@@ -4,13 +4,11 @@ import com.seeyon.orgcenter.common.basemapper.BaseMapper;
 import com.seeyon.orgcenter.manage.account.entity.OrgAccount;
 import com.seeyon.orgcenter.manage.account.entity.OrgAppAccountRoleRelation;
 import com.seeyon.orgcenter.manage.role.entity.OrgRole;
-import io.swagger.annotations.ApiModel;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-@ApiModel("账号角色")
+
 @Mapper
 public interface OrgAppAccountRoleRelationMapper extends BaseMapper<OrgAppAccountRoleRelation> {
 
@@ -20,7 +18,7 @@ public interface OrgAppAccountRoleRelationMapper extends BaseMapper<OrgAppAccoun
      * @param RoleID
      * @return
      */
-    List<OrgAccount> getAccountsByRoleID(@Param(value = "AppId") Long AppId, @Param(value = "RoleID") Long RoleID);
+    List<OrgAccount> getAccountsByRoleID(Long AppId,Long RoleID);
 
 
     /**
@@ -29,7 +27,7 @@ public interface OrgAppAccountRoleRelationMapper extends BaseMapper<OrgAppAccoun
      * @param AccountID
      * @return
      */
-    List<OrgRole> getRolesByAccountID(@Param(value = "AppId") Long AppId, @Param(value = "AccountID") Long AccountID);
+    List<OrgRole> getRolesByAccountID(Long AppId,Long AccountID);
 
 
     /**
@@ -40,6 +38,6 @@ public interface OrgAppAccountRoleRelationMapper extends BaseMapper<OrgAppAccoun
      * @param DoMain
      * @return
      */
-    List<OrgRole> getRolesByAccDomain(@Param(value = "AccountId") Long AccountId,@Param(value = "AppId") Long AppId,@Param(value = "DoMain") String DoMain);
+    List<OrgRole> getRolesByAccDomain(Long AccountId,Long AppId,String DoMain);
 
 }

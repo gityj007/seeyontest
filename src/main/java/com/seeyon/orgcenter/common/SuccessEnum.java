@@ -5,11 +5,11 @@ public enum SuccessEnum implements BaseSuccessInfoInterface{
     SUCCESS("2000", "业务处理成功!",null);
 
     /** 错误码 */
-    private String code;
+    private final String code;
 
-    private String msg;
+    private final String msg;
 
-    private Object data;
+    private final Object data;
 
 
 

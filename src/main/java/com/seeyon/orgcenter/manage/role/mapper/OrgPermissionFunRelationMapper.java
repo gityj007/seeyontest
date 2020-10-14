@@ -6,7 +6,7 @@ import io.swagger.annotations.ApiModel;
 import org.apache.ibatis.annotations.Mapper;
 
 
-@ApiModel("角色fun权限")
+
 @Mapper
 public interface OrgPermissionFunRelationMapper extends BaseMapper<OrgPermissionFunRelation> {
 

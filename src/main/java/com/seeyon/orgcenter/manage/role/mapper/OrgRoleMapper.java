@@ -7,7 +7,7 @@ import io.swagger.annotations.ApiModel;
 import org.apache.ibatis.annotations.Mapper;
 
 
-@ApiModel("角色")
+
 @Mapper
 public interface OrgRoleMapper extends BaseMapper<OrgRole> {
 

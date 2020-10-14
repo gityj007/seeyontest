@@ -1,5 +1,7 @@
 package com.seeyon.orgcenter.manage.role.entity;
 
+import io.swagger.annotations.ApiModel;
+
 import java.util.Date;
 
 /**
@@ -9,6 +11,7 @@ import java.util.Date;
  *
  * @mbg.generated do_not_delete_during_merge Wed Oct 14 00:13:41 CST 2020
  */
+@ApiModel("角色")
 public class OrgRole {
     /**
      *

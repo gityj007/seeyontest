@@ -161,7 +161,7 @@ public class OrgAppAccountRoleRelationServiceImpl extends BaseServiceImpl<OrgApp
      */
     @Override
     public ResultBody getAccountsByRoleID(Long AppId, Long RoleID) {
-        List<OrgAccount> OrgAccounts =  getMapper().getAccountsByRoleID(AppId, RoleID);;
+        List<OrgAccount> OrgAccounts =  getMapper().getAccountsByRoleID(AppId, RoleID);
         ResultBody resultBody=ResultBody.success(OrgAccounts);
         resultBody.setMsg("查询成功");
         return resultBody;

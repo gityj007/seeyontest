@@ -14,14 +14,14 @@ public enum ErrorEnum implements BaseErrorInfoInterface {
 	INVALID_SIGN("5000", "业务处理失败","SP.INVALID_SIGN","无效的签名");
 
 	/** 错误码 */
-	private String code;
+	private final String code;
 
-	private String msg;
+	private final String msg;
 
-	private String err_code;
+	private final String err_code;
 
 	/** 错误描述 */
-	private String err_msg;
+	private final String err_msg;
 
 	ErrorEnum(String Code, String Msg,String ErrCode, String ErrMsg) {
 		this.code = Code;
