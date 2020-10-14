@@ -32,7 +32,7 @@ public class OrgTreeController{
 	@ApiOperation(value="获取所有组织", notes="获取所有组织All", produces="application/json")
 	@RequestMapping(value = "/getAllOrgTree",method = RequestMethod.GET)
 	public ResultBody getAllOrgTree(){
-		List<OrgTree> list = orgTreeService.getList();
+		List<OrgTree> list = orgTreeService.selectByPrimarySelective(null);
 		ResultBody resultBody = ResultBody.success(list);
 		resultBody.setMsg("查询成功");
 		return resultBody;
@@ -44,7 +44,7 @@ public class OrgTreeController{
 	@RequestMapping(value = "/getOrgTreeByID",method = RequestMethod.GET)
 	public ResultBody getOrgTreeByID(@RequestParam Long id){
 		//ResultBody resultBody = ResultBody.success(orgFunctionService.getById(id));
-		ResultBody resultBody = ResultBody.success(orgTreeService.getOrgTreeById(id));
+		ResultBody resultBody = ResultBody.success(orgTreeService.selectByPrimaryKey(id));
 		resultBody.setMsg("查询成功");
 		return resultBody;
 	}
@@ -53,12 +53,12 @@ public class OrgTreeController{
 	@RequestMapping(value = "/saveOrUpdateOrgTree",method = RequestMethod.POST)
 	public ResultBody saveOrUpdateOrgTree(@RequestBody OrgTree orgTree){
 		if(orgTree.getId() == null){
-			orgTreeService.add(orgTree);
+			orgTreeService.insert(orgTree);
 			ResultBody resultBody=ResultBody.success();
 			resultBody.setMsg("新增成功");
 			return resultBody;
 		}else{
-			orgTreeService.updata(orgTree);
+			orgTreeService.updateByPrimaryKeySelective(orgTree);
 			ResultBody resultBody=ResultBody.success();
 			resultBody.setMsg("修改成功");
 			return resultBody;
@@ -70,7 +70,7 @@ public class OrgTreeController{
 	@RequestMapping(value = "/delOrgTree",method = RequestMethod.POST)
 	public ResultBody delOrgTree(@RequestParam Long id){
 		//ResultBody resultBody=ResultBody.success(orgFunctionService.removeById(id));
-		orgTreeService.delete(id);
+		orgTreeService.deleteByPrimaryKey(id);
 		ResultBody resultBody=ResultBody.success();
 		resultBody.setMsg("删除成功");
 		return resultBody;
@@ -81,7 +81,7 @@ public class OrgTreeController{
 	@RequestMapping(value = "/delMoreOrgTree",method = RequestMethod.POST)
 	public ResultBody delMoreOrgTree(@RequestParam List<Long> ids){
 		//ResultBody resultBody=ResultBody.success(orgFunctionService.removeById(id));
-		orgTreeService.deleteAll(ids);
+		//orgTreeService.deleteAll(ids);
 		ResultBody resultBody=ResultBody.success();
 		resultBody.setMsg("删除成功");
 		return resultBody;

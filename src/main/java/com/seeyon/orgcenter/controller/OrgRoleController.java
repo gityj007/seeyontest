@@ -33,7 +33,7 @@ public class OrgRoleController {
 	@ApiOperation(value="获取所有角色", notes="获取所有角色All", produces="application/json")
 	@RequestMapping(value = "/getAllOrgRole",method = RequestMethod.GET)
 	public ResultBody getAllOrgRole(){
-		List<OrgRole> list = orgRoleService.getList();
+		List<OrgRole> list = orgRoleService.selectByPrimarySelective(null);
 		ResultBody resultBody = ResultBody.success(list);
 		resultBody.setMsg("查询成功");
 		return resultBody;
@@ -44,7 +44,7 @@ public class OrgRoleController {
 	@RequestMapping(value = "/getOrgRoleByID",method = RequestMethod.GET)
 	public ResultBody getOrgRoleByID(@RequestParam Long id){
 		//ResultBody resultBody = ResultBody.success(orgFunctionService.getById(id));
-		ResultBody resultBody = ResultBody.success(orgRoleService.getOrgRoleById(id));
+		ResultBody resultBody = ResultBody.success(orgRoleService.selectByPrimaryKey(id));
 		resultBody.setMsg("查询成功");
 		return resultBody;
 	}
@@ -54,12 +54,12 @@ public class OrgRoleController {
     @RequestMapping(value = "/saveOrUpdateOrgRole",method = RequestMethod.POST)
     public ResultBody saveOrUpdateOrgRole(@RequestBody OrgRole orgRole){
 		if(orgRole.getId() == null){
-			orgRoleService.add(orgRole);
+			orgRoleService.insert(orgRole);
 			ResultBody resultBody=ResultBody.success();
 			resultBody.setMsg("新增成功");
 			return resultBody;
 		}else{
-			orgRoleService.updata(orgRole);
+			orgRoleService.updateByPrimaryKeySelective(orgRole);
 			ResultBody resultBody=ResultBody.success();
 			resultBody.setMsg("修改成功");
 			return resultBody;
@@ -71,7 +71,7 @@ public class OrgRoleController {
     @ApiImplicitParam(name = "id", value = "账号ID", paramType = "form", required = true, dataType = "long")
     @RequestMapping(value = "/delOrgRoleByID",method = RequestMethod.POST)
     public ResultBody delOrgRoleByID(@RequestParam Long id){
-		orgRoleService.delete(id);
+		orgRoleService.deleteByPrimaryKey(id);
         ResultBody resultBody=ResultBody.success();
         resultBody.setMsg("删除角色成功");
         return resultBody;
@@ -82,7 +82,7 @@ public class OrgRoleController {
 	@RequestMapping(value = "/delMoreOrgRole",method = RequestMethod.POST)
 	public ResultBody delMoreOrgRole(@RequestParam List<Long> ids){
 		//ResultBody resultBody=ResultBody.success(orgFunctionService.removeById(id));
-		orgRoleService.deleteAll(ids);
+		//orgRoleService.deleteAll(ids);
 		ResultBody resultBody=ResultBody.success();
 		resultBody.setMsg("删除多个角色成功");
 		return resultBody;
