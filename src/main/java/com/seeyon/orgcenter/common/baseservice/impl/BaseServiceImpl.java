@@ -21,10 +21,19 @@ public  class BaseServiceImpl<M extends BaseMapper<T>, T> implements BaseService
     public int insert(T record) {
         return baseMapper.insert(record);
     }
+    // 插入设置，调用dao层函数
+    public int insertBatch(List list) {
+        return baseMapper.insertBatch(list);
+    }
 
     // 插入非空字段
     public int insertSelective(T record) {
         return baseMapper.insertSelective(record);
+    }
+
+    //插入或更新非空字段
+    public int saveOrUpdateSelective(T record) {
+        return baseMapper.saveOrUpdateSelective(record);
     }
 
     // 通过主键进行查询
@@ -47,15 +56,10 @@ public  class BaseServiceImpl<M extends BaseMapper<T>, T> implements BaseService
         return baseMapper.updateByPrimaryKey(record);
     }
 
-    // 查询数据，存储List
-    public List<T> query(T record) {
-        return baseMapper.selectByPrimarySelective(record);
-    }
-
     // 统计数据
-    public int selectCount(T record) {
-        return baseMapper.selectCount(record);
-    }
+//    public int selectCount(T record) {
+//        return baseMapper.selectCount(record);
+//    }
 
     // 根据主键进行删除
     public int deleteByPrimaryKey(Object id) {

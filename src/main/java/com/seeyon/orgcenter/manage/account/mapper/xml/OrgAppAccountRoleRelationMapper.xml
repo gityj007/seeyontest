@@ -151,4 +151,35 @@
 			</if>
 		</where>
 	</select>
+
+
+
+
+
+
+
+
+  <!--查询账户byroleid-->
+  <select id="getAccountsByRoleID" resultType="com.seeyon.orgcenter.manage.account.entity.OrgAccount">
+        select * from org_account oa where oa.id exists
+        (select oar.account_id  from org_app_account_role_relation oar where oar.app_id=#{AppId} and oar.role_id=#{RoleID})
+	</select>
+
+  <!--查询角色byaccountid-->
+  <select id="getRolesByAccountID" resultType="com.seeyon.orgcenter.manage.role.entity.OrgRole">
+         select * from org_role oro where oro.id exists
+                (select oar.role_id  from org_app_account_role_relation oar where oar.app_id=#{AppId} and oar.account_id=#{AccountID})
+    </select>
+  <!--获取角色通过账号及分组-->
+  <select id="getRolesByAccDomain" resultType="com.seeyon.orgcenter.manage.role.entity.OrgRole">
+         select * from org_role oro where oro.id exists
+            (select oar.role_id  from org_app_account_role_relation oar where oar.app_id=#{AppId} and oar.account_id=#{AccountId} and oar.domain=#{DoMain})
+
+    </select>
+
+
+
+
+
+
 </mapper>

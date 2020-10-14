@@ -9,6 +9,14 @@ public interface BaseMapper<T> {
     int deleteByPrimaryKey(Object id);
     // 自定义插入列
     int insertSelective(T record);
+
+    // 自定义插入列
+    int saveOrUpdateSelective(T record);
+
+    //批量插入
+    int insertBatch(List list);
+
+
     // 根据主键进行查找数据
     T selectByPrimaryKey(Object id);
 

@@ -59,7 +59,11 @@ public class OrgAccountController {
 	@ApiOperation(value="添加或更新账号", notes="添加或更新账号", produces="application/json")
 	@RequestMapping(value = "/saveOrUpdateOrgAccount",method = RequestMethod.POST)
 	public ResultBody saveOrUpdateOrgAccount(@RequestBody OrgAccount orgAccount){
-		ResultBody resultBody=ResultBody.success(orgAccountService.saveOrUpdate(orgAccount));
+		if(orgAccount.getId()==null){
+			String passCode =orgAccountService.passEncryption("",orgAccount.getCredentialValue());
+			orgAccount.setCredentialValue( passCode );
+		}
+		ResultBody resultBody=ResultBody.success(orgAccountService.saveOrUpdateSelective(orgAccount));
 		resultBody.setMsg("更新成功");
 		return resultBody;
 	}
@@ -67,6 +71,12 @@ public class OrgAccountController {
 	@ApiOperation(value="批量添加账号", notes="批量添加账号", produces="application/json")
 	@RequestMapping(value = "/saveOrgAccountBatch",method = RequestMethod.POST)
 	public ResultBody insertOrgAccountBatch(@RequestBody List<OrgAccount> orgAccounts){
+		//密码加密
+		orgAccounts.stream().peek(orgAccount->{
+			String passCode =orgAccountService.passEncryption("",orgAccount.getCredentialValue());
+			orgAccount.setCredentialValue( passCode );
+		}).collect(Collectors.toList());
+
 		ResultBody resultBody=ResultBody.success(orgAccountService.insertBatch(orgAccounts));
 		resultBody.setMsg("批量添加账号成功");
 		return resultBody;
