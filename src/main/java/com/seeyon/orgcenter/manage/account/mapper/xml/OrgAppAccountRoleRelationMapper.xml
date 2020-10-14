@@ -178,7 +178,54 @@
     </select>
 
 
+	<insert id="saveOrUpdateSelective" parameterType="com.seeyon.orgcenter.manage.account.entity.OrgAppAccountRoleRelation">
+		replace into org_app_account_role_relation
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="accountId != null">
+				ACCOUNT_ID,
+			</if>
+			<if test="roleId != null">
+				ROLE_ID,
+			</if>
+			<if test="domain != null">
+				DOMAIN,
+			</if>
+			<if test="appId != null">
+				APP_ID
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="accountId != null">
+				#{accountId,jdbcType=BIGINT},
+			</if>
+			<if test="roleId != null">
+				#{roleId,jdbcType=BIGINT},
+			</if>
+			<if test="domain != null">
+				#{domain,jdbcType=VARCHAR},
+			</if>
+			<if test="appId != null">
+				#{appId,jdbcType=BIGINT}
+			</if>
+		</trim>
+	</insert>
 
+
+	<insert id="insertBatch" parameterType="java.util.List">
+
+		insert into org_app_account_role_relation
+		(<include refid="Base_Column_List"/>)
+		VALUES
+		<foreach collection ="list" item="OrgAppAccountRoleRelation" separator =",">
+			(#{OrgAppAccountRoleRelation.accountId,jdbcType=BIGINT},
+			#{OrgAppAccountRoleRelation.roleId,jdbcType=BIGINT},
+			#{OrgAppAccountRoleRelation.domain,jdbcType=VARCHAR},
+			#{OrgAppAccountRoleRelation.appId,jdbcType=BIGINT},
+			#{OrgAppAccountRoleRelation.id,jdbcType=BIGINT})
+		</foreach >
+
+
+	</insert>
 
 
 

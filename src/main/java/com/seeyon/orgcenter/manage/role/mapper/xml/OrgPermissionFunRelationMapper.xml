@@ -163,4 +163,54 @@
          select * from org_role oro where oro.id exists
                 (select oar.role_id  from org_permission_fun_relation oar where oar.app_id=#{AppId} and oar.fun_id=#{FunID})
     </select>
+
+
+	<insert id="saveOrUpdateSelective" parameterType="com.seeyon.orgcenter.manage.role.entity.OrgPermissionFunRelation">
+		replace into org_permission_fun_relation
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="appId != null">
+				APP_ID,
+			</if>
+			<if test="name != null">
+				NAME,
+			</if>
+			<if test="funId != null">
+				FUN_ID,
+			</if>
+			<if test="roleId != null">
+				ROLE_ID
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="appId != null">
+				#{appId,jdbcType=BIGINT},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="funId != null">
+				#{funId,jdbcType=BIGINT},
+			</if>
+			<if test="roleId != null">
+				#{roleId,jdbcType=BIGINT}
+			</if>
+		</trim>
+	</insert>
+
+
+	<insert id="insertBatch" parameterType="java.util.List">
+
+		insert into org_permission_fun_relation
+		(<include refid="Base_Column_List"/>)
+		VALUES
+		<foreach collection ="list" item="OrgPermissionFunRelation" separator =",">
+			(#{OrgPermissionFunRelation.appId,jdbcType=BIGINT},
+			#{OrgPermissionFunRelation.name,jdbcType=VARCHAR},
+			#{OrgPermissionFunRelation.funId,jdbcType=BIGINT},
+			#{OrgPermissionFunRelation.roleId,jdbcType=BIGINT},
+			#{OrgPermissionFunRelation.id,jdbcType=BIGINT})
+		</foreach >
+
+
+	</insert>
 </mapper>

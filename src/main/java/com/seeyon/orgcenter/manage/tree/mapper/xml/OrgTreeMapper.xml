@@ -270,4 +270,102 @@
 			</if>
 		</where>
 	</select>
+
+
+	<insert id="saveOrUpdateSelective" parameterType="com.seeyon.orgcenter.manage.tree.entity.OrgTree">
+		replace into org_tree
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="name != null">
+				NAME,
+			</if>
+			<if test="code != null">
+				CODE,
+			</if>
+			<if test="isGlobal != null">
+				IS_GLOBAL,
+			</if>
+			<if test="isEnable != null">
+				IS_ENABLE,
+			</if>
+			<if test="isDeleted != null">
+				IS_DELETED,
+			</if>
+			<if test="parentOrganId != null">
+				PARENT_ORGAN_ID,
+			</if>
+			<if test="organId != null">
+				ORGAN_ID,
+			</if>
+			<if test="level != null">
+				LEVEL,
+			</if>
+			<if test="path != null">
+				PATH,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME,
+			</if>
+			<if test="createUser != null">
+				CREATE_USER
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				#{code,jdbcType=VARCHAR},
+			</if>
+			<if test="isGlobal != null">
+				#{isGlobal,jdbcType=SMALLINT},
+			</if>
+			<if test="isEnable != null">
+				#{isEnable,jdbcType=SMALLINT},
+			</if>
+			<if test="isDeleted != null">
+				#{isDeleted,jdbcType=SMALLINT},
+			</if>
+			<if test="parentOrganId != null">
+				#{parentOrganId,jdbcType=BIGINT},
+			</if>
+			<if test="organId != null">
+				#{organId,jdbcType=BIGINT},
+			</if>
+			<if test="level != null">
+				#{level,jdbcType=INTEGER},
+			</if>
+			<if test="path != null">
+				#{path,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="createUser != null">
+				#{createUser,jdbcType=BIGINT}
+			</if>
+		</trim>
+	</insert>
+
+
+	<insert id="insertBatch" parameterType="java.util.List">
+
+		insert into org_tree
+		(<include refid="Base_Column_List"/>)
+		VALUES
+		<foreach collection ="list" item="OrgTree" separator =",">
+			(#{OrgTree.id,jdbcType=BIGINT}, #{OrgTree.name,jdbcType=VARCHAR}, #{OrgTree.code,jdbcType=VARCHAR},
+			#{OrgTree.isGlobal,jdbcType=SMALLINT}, #{OrgTree.isEnable,jdbcType=SMALLINT}, #{OrgTree.isDeleted,jdbcType=SMALLINT},
+			#{OrgTree.parentOrganId,jdbcType=BIGINT}, #{OrgTree.organId,jdbcType=BIGINT}, #{OrgTree.level,jdbcType=INTEGER},
+			#{OrgTree.path,jdbcType=VARCHAR}, #{OrgTree.createTime,jdbcType=TIMESTAMP}, #{OrgTree.updateTime,jdbcType=TIMESTAMP},
+			#{OrgTree.createUser,jdbcType=BIGINT})
+		</foreach >
+
+
+	</insert>
 </mapper>

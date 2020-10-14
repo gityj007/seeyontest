@@ -179,4 +179,61 @@
          select * from org_role oro where oro.id in
                 (select oar.role_id  from org_permission_data_relation oar where oar.app_id=#{AppId} and oar.org_id=#{OrgID})
     </select>
+
+
+	<insert id="saveOrUpdateSelective" parameterType="com.seeyon.orgcenter.manage.role.entity.OrgPermissionDataRelation">
+		replace into org_permission_data_relation
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="appId != null">
+				APP_ID,
+			</if>
+			<if test="name != null">
+				NAME,
+			</if>
+			<if test="orgId != null">
+				ORG_ID,
+			</if>
+			<if test="isAvailableChild != null">
+				IS_AVAILABLE_CHILD,
+			</if>
+			<if test="roleId != null">
+				ROLE_ID
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="appId != null">
+				#{appId,jdbcType=BIGINT},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="orgId != null">
+				#{orgId,jdbcType=BIGINT},
+			</if>
+			<if test="isAvailableChild != null">
+				#{isAvailableChild,jdbcType=INTEGER},
+			</if>
+			<if test="roleId != null">
+				#{roleId,jdbcType=BIGINT}
+			</if>
+		</trim>
+	</insert>
+
+
+	<insert id="insertBatch" parameterType="java.util.List">
+
+		insert into org_permission_data_relation
+		(<include refid="Base_Column_List"/>)
+		VALUES
+		<foreach collection ="list" item="OrgPermissionDataRelation" separator =",">
+			(#{OrgPermissionDataRelation.appId,jdbcType=BIGINT},
+			#{OrgPermissionDataRelation.name,jdbcType=VARCHAR},
+			#{OrgPermissionDataRelation.orgId,jdbcType=BIGINT},
+			#{OrgPermissionDataRelation.isAvailableChild,jdbcType=INTEGER},
+			#{OrgPermissionDataRelation.roleId,jdbcType=BIGINT},
+			#{OrgPermissionDataRelation.id,jdbcType=BIGINT})
+		</foreach >
+
+
+	</insert>
 </mapper>

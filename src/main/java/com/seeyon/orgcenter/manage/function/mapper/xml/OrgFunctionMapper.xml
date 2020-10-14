@@ -342,4 +342,133 @@
 			</if>
 		</where>
 	</select>
+
+
+	<insert id="saveOrUpdateSelective" parameterType="com.seeyon.orgcenter.manage.function.entity.OrgFunction">
+		replace into org_function
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="appId != null">
+				APP_ID,
+			</if>
+			<if test="name != null">
+				NAME,
+			</if>
+			<if test="code != null">
+				CODE,
+			</if>
+			<if test="url != null">
+				URL,
+			</if>
+			<if test="type != null">
+				TYPE,
+			</if>
+			<if test="parentFunId != null">
+				PARENT_FUN_ID,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME,
+			</if>
+			<if test="icon != null">
+				ICON,
+			</if>
+			<if test="path != null">
+				PATH,
+			</if>
+			<if test="isShow != null">
+				IS_SHOW,
+			</if>
+			<if test="isCheck != null">
+				IS_CHECK,
+			</if>
+			<if test="isControl != null">
+				IS_CONTROL,
+			</if>
+			<if test="shortcut != null">
+				SHORTCUT,
+			</if>
+			<if test="shortcutIcon != null">
+				SHORTCUT_ICON,
+			</if>
+			<if test="level != null">
+				LEVEL,
+			</if>
+			<if test="isDeleted != null">
+				IS_DELETED
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="appId != null">
+				#{appId,jdbcType=BIGINT},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				#{code,jdbcType=VARCHAR},
+			</if>
+			<if test="url != null">
+				#{url,jdbcType=VARCHAR},
+			</if>
+			<if test="type != null">
+				#{type,jdbcType=INTEGER},
+			</if>
+			<if test="parentFunId != null">
+				#{parentFunId,jdbcType=BIGINT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="icon != null">
+				#{icon,jdbcType=VARCHAR},
+			</if>
+			<if test="path != null">
+				#{path,jdbcType=VARCHAR},
+			</if>
+			<if test="isShow != null">
+				#{isShow,jdbcType=SMALLINT},
+			</if>
+			<if test="isCheck != null">
+				#{isCheck,jdbcType=SMALLINT},
+			</if>
+			<if test="isControl != null">
+				#{isControl,jdbcType=SMALLINT},
+			</if>
+			<if test="shortcut != null">
+				#{shortcut,jdbcType=SMALLINT},
+			</if>
+			<if test="shortcutIcon != null">
+				#{shortcutIcon,jdbcType=VARCHAR},
+			</if>
+			<if test="level != null">
+				#{level,jdbcType=INTEGER},
+			</if>
+			<if test="isDeleted != null">
+				#{isDeleted,jdbcType=SMALLINT}
+			</if>
+		</trim>
+	</insert>
+
+
+	<insert id="insertBatch" parameterType="java.util.List">
+
+		insert into org_function
+		(<include refid="Base_Column_List"/>)
+		VALUES
+		<foreach collection ="list" item="OrgFunction" separator =",">
+			(#{OrgFunction.id,jdbcType=BIGINT}, #{OrgFunction.appId,jdbcType=BIGINT}, #{OrgFunction.name,jdbcType=VARCHAR},
+			#{OrgFunction.code,jdbcType=VARCHAR}, #{OrgFunction.url,jdbcType=VARCHAR}, #{OrgFunction.type,jdbcType=INTEGER}, #{OrgFunction.parentFunId,jdbcType=BIGINT},
+			#{OrgFunction.createTime,jdbcType=TIMESTAMP}, #{OrgFunction.updateTime,jdbcType=TIMESTAMP}, #{OrgFunction.icon,jdbcType=VARCHAR},
+			#{OrgFunction.path,jdbcType=VARCHAR}, #{OrgFunction.isShow,jdbcType=SMALLINT}, #{OrgFunction.isCheck,jdbcType=SMALLINT},
+			#{OrgFunction.isControl,jdbcType=SMALLINT}, #{OrgFunction.shortcut,jdbcType=SMALLINT}, #{OrgFunction.shortcutIcon,jdbcType=VARCHAR},
+			#{OrgFunction.level,jdbcType=INTEGER}, #{OrgFunction.isDeleted,jdbcType=SMALLINT})
+		</foreach >
+
+
+	</insert>
 </mapper>

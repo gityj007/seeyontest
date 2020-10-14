@@ -211,4 +211,81 @@
 			</if>
 		</where>
 	</select>
+
+	<insert id="saveOrUpdateSelective" parameterType="com.seeyon.orgcenter.manage.role.entity.OrgRole">
+		replace into org_role
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="name != null">
+				NAME,
+			</if>
+			<if test="code != null">
+				CODE,
+			</if>
+			<if test="appId != null">
+				APP_ID,
+			</if>
+			<if test="isDeleted != null">
+				IS_DELETED,
+			</if>
+			<if test="isEnable != null">
+				IS_ENABLE,
+			</if>
+			<if test="createTime != null">
+				CREATE_TIME,
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME,
+			</if>
+			<if test="isGlobal != null">
+				IS_GLOBAL
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="code != null">
+				#{code,jdbcType=VARCHAR},
+			</if>
+			<if test="appId != null">
+				#{appId,jdbcType=BIGINT},
+			</if>
+			<if test="isDeleted != null">
+				#{isDeleted,jdbcType=SMALLINT},
+			</if>
+			<if test="isEnable != null">
+				#{isEnable,jdbcType=SMALLINT},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="updateTime != null">
+				#{updateTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="isGlobal != null">
+				#{isGlobal,jdbcType=SMALLINT}
+			</if>
+		</trim>
+	</insert>
+
+
+	<insert id="insertBatch" parameterType="java.util.List">
+
+		insert into org_role
+		(<include refid="Base_Column_List"/>)
+		VALUES
+		<foreach collection ="list" item="OrgRole" separator =",">
+			(#{OrgRole.name,jdbcType=VARCHAR},
+			#{OrgRole.code,jdbcType=VARCHAR},
+			#{OrgRole.appId,jdbcType=BIGINT},
+			#{OrgRole.isDeleted,jdbcType=SMALLINT},
+			#{OrgRole.isEnable,jdbcType=SMALLINT},
+			#{OrgRole.createTime,jdbcType=TIMESTAMP},
+			#{OrgRole.updateTime,jdbcType=TIMESTAMP},
+			#{OrgRole.isGlobal,jdbcType=SMALLINT},
+			#{OrgRole.id,jdbcType=BIGINT})
+		</foreach >
+
+
+	</insert>
 </mapper>
